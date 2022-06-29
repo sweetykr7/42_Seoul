@@ -6,13 +6,13 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:29:04 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/28 16:20:56 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:26:25 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pb(t_head *b, t_head *a)
+void	pb(t_head *a, t_head *b)
 {
 	int	pull_data;
 
@@ -48,7 +48,7 @@ void	rrb(t_head *b)
 			pull_data = temp->next->data;
 			temp2 = temp->next;
 			temp->next = 0;
-			b->cnt = b->cnt - 1;
+			b->total_cnt = b->total_cnt - 1;
 			free(temp2);
 			break ;
 		}

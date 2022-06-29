@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/29 09:48:24 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:42:06 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct linked_list
 
 typedef struct list_head
 {
-	int					cnt;
+	int					total_cnt;
 	struct linked_list	*head;
 }	t_head;
 
@@ -33,6 +33,30 @@ t_head	*new_head(void);
 t_head	*list_add(t_head *head, int data);
 t_head	*push(t_head *head_in, int data);
 t_head	*pull(t_head *head_in, int *pull_data);
+
 void	pa(t_head *a, t_head *b);
+void	sa(t_head *a);
+void	rra(t_head *a);
+void	ra(t_head *a);
+
+void	pb(t_head *a, t_head *b);
+void	sb(t_head *b);
+void	rrb(t_head *b);
+void	rb(t_head *b);
+
+void	sort_a_case_1(t_head *a, t_head *b);
+void	sort_a_case_2(t_head *a, t_head *b);
+void	sort_a_case_3(t_head *a, t_head *b);
+void	sort_a_case_4(t_head *a, t_head *b);
+void	sort_a_case_5(t_head *a, t_head *b);
+
+void	sort_b_case_1(t_head *a, t_head *b);
+void	sort_b_case_2(t_head *a, t_head *b);
+void	sort_b_case_3(t_head *a, t_head *b);
+void	sort_b_case_4(t_head *a, t_head *b);
+void	sort_b_case_5(t_head *a, t_head *b);
+
+void	sort_a(t_head *a, t_head *b, int size);
+void	sort_b(t_head *a, t_head *b, int size);
 
 #endif

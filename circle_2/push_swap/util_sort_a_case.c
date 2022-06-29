@@ -1,28 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   util_sort_a_case.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 16:30:45 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/29 13:26:55 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/06/29 11:15:16 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/06/29 13:38:55 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-
-void	divide_stack(t_head *a, t_head *b, char option)
+void	sort_a_case_1(t_head *a, t_head *b)
 {
-	
+	sa(a);
+	ra(a);
+	ra(a);
+	pb(a, b);
+	rra(a);
+	rra(a);
+	pa(a, b);
 }
 
+void	sort_a_case_2(t_head *a, t_head *b)
+{
+	ra(a);
+	ra(a);
+	pb(a, b);
+	rra(a);
+	rra(a);
+	pa(a, b);
+}
 
-// int	main(int ac, char **av)
-// {
-// 	ac = 0;
-// 	**av = 0;
-// 	return (0);
-// }
+void	sort_a_case_3(t_head *a, t_head *b)
+{
+	sa(a);
+	ra(a);
+	sa(a);
+	rra(a);
+}
+
+void	sort_a_case_4(t_head *a, t_head *b)
+{
+	ra(a);
+	sa(a);
+	rra(a);
+}
+
+void	sort_a_case_5(t_head *a, t_head *b)
+{
+	sa(a);
+}
+
