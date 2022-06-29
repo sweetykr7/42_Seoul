@@ -2,6 +2,7 @@
 #include "util_list.c"
 #include "util_stack_a.c"
 #include "util_stack_b.c"
+#include "push_swap.c"
 
 #include <stdio.h>
 
@@ -118,53 +119,53 @@ int main(void)
 
 	//util_stack_b test
 	//pb test;
-	pb(head_b, head);
+	// pb(head_b, head);
 
 
-	i = 0;
-	temp = head_b->head;
-	while (i < head_b->cnt)
-	{
-		printf("pb Test, stack b[%d] : %d \n",i,(temp->data));
-		temp = temp->next;
-		i++;
-	}
+	// i = 0;
+	// temp = head_b->head;
+	// while (i < head_b->cnt)
+	// {
+	// 	printf("pb Test, stack b[%d] : %d \n",i,(temp->data));
+	// 	temp = temp->next;
+	// 	i++;
+	// }
 
-	sb(head_b);
-
-
-	i = 0;
-	temp = head_b->head;
-	while (i < head_b->cnt)
-	{
-		printf("sb Test, stack b[%d] : %d \n",i,(temp->data));
-		temp = temp->next;
-		i++;
-	}	
-
-	rb(head_b);
+	// sb(head_b);
 
 
-	i = 0;
-	temp = head_b->head;
-	while (i < head_b->cnt)
-	{
-		printf("rb Test, stack b[%d] : %d \n",i,(temp->data));
-		temp = temp->next;
-		i++;
-	}	
+	// i = 0;
+	// temp = head_b->head;
+	// while (i < head_b->cnt)
+	// {
+	// 	printf("sb Test, stack b[%d] : %d \n",i,(temp->data));
+	// 	temp = temp->next;
+	// 	i++;
+	// }	
 
-	rrb(head_b);
+	// rb(head_b);
 
 
-	i = 0;
-	temp = head_b->head;
-	while (i < head_b->cnt)
-	{
-		printf("rrb Test, stack b[%d] : %d \n",i,(temp->data));
-		temp = temp->next;
-		i++;
-	}	
+	// i = 0;
+	// temp = head_b->head;
+	// while (i < head_b->cnt)
+	// {
+	// 	printf("rb Test, stack b[%d] : %d \n",i,(temp->data));
+	// 	temp = temp->next;
+	// 	i++;
+	// }	
+
+	// rrb(head_b);
+
+
+	// i = 0;
+	// temp = head_b->head;
+	// while (i < head_b->cnt)
+	// {
+	// 	printf("rrb Test, stack b[%d] : %d \n",i,(temp->data));
+	// 	temp = temp->next;
+	// 	i++;
+	// }	
 
 
 

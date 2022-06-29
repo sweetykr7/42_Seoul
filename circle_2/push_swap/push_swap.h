@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/28 14:58:31 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/29 09:48:24 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct linked_list
 {
 	int					data;
+	int					cluster_cnt;
 	struct linked_list	*next;
 }	t_list;
 
