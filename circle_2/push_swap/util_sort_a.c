@@ -6,11 +6,23 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:15:16 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/29 13:39:02 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:59:11 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	write_sort_complete_a(t_head *a, int size)
+{
+	t_list	*temp;
+
+	temp = a->head;
+	while (size > 0 && temp)
+	{
+		temp->cluster_cnt = -1;
+		temp = temp->next;
+	}
+}
 
 void	sort_a(t_head *a, t_head *b, int size)
 {
@@ -33,7 +45,13 @@ void	sort_a(t_head *a, t_head *b, int size)
 			sort_a_case_4(a, b);
 		else if (para3 < para1 && para1 < para2)
 			sort_a_case_5(a, b);
-		return ;
+		write_sort_complete_a(a, 3);
 	}
-	sa(a);
+	else if (size == 2)
+	{
+		sa(a);
+		write_sort_complete_a(a, 2);
+	}
+	else
+		write_sort_complete_a(a, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:39:29 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/29 10:52:24 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:54:15 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,10 @@ t_head	*list_add(t_head *head, int data)
 	add_list->cluster_cnt = 0;
 	add_list->data = data;
 	if (head->total_cnt == 0)
-	{
-		add_list->cluster_cnt = 1;
 		head->head = add_list;
-	}
 	else
 	{
 		temp = head->head;
-		temp->cluster_cnt = temp->cluster_cnt + 1;
 		while (temp->next)
 			temp = temp->next;
 		temp->next = add_list;

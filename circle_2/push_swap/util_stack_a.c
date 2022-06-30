@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:29:04 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/28 16:19:08 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:05:53 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	rra(t_head *a)
 			pull_data = temp->next->data;
 			temp2 = temp->next;
 			temp->next = 0;
-			a->cnt = a->cnt - 1;
+			a->total_cnt = a->total_cnt - 1;
 			free(temp2);
 			break ;
 		}
