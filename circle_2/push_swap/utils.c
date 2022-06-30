@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/30 11:30:44 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:26:45 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,64 @@ int	*sort_arr(int size, int *sort)
 		j = i;
 	}
 	return (sort);
+}
+
+int	check_asc_sort_a(t_head *a, int size)
+{
+	t_list	*temp;
+	int		i;
+
+	temp = a->head;
+	i = size;
+	while (i > 0 && temp)
+	{
+		if (temp->next)
+		{
+			if (temp->data > temp->next->data)
+				return (0);
+		}
+		else
+			break ;
+		temp = temp->next;
+		i--;
+	}
+	temp = a->head;
+	i = size;
+	while (i > 0 && temp)
+	{
+		temp->cluster_cnt = -1;
+		temp = temp->next;
+		i--;
+	}
+	return (1);
+}
+
+int	check_asc_sort_b(t_head *b, int size)
+{
+	t_list	*temp;
+	int		i;
+
+	temp = b->head;
+	i = size;
+	while (i > 0 && temp)
+	{
+		if (temp->next)
+		{
+			if (temp->data < temp->next->data)
+				return (0);
+		}
+		else
+			break ;
+		temp = temp->next;
+		i--;
+	}
+	temp = b->head;
+	i = size;
+	while (i > 0 && temp)
+	{
+		temp->cluster_cnt = -1;
+		temp = temp->next;
+		i--;
+	}
+	return (1);
 }

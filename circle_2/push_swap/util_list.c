@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:39:29 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/30 10:54:15 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:54:10 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_head	*new_head(void)
 	return (new);
 }
 
-t_head	*list_add(t_head *head, int data)
+t_head	*list_add(t_head *head, int data, int sort_check)
 {
 	t_list	*add_list;
 	t_list	*temp;
@@ -33,7 +33,10 @@ t_head	*list_add(t_head *head, int data)
 	if (!add_list)
 		return (0);
 	add_list->next = 0;
-	add_list->cluster_cnt = 0;
+	if (sort_check == -1)
+		add_list->cluster_cnt = -1;
+	else
+		add_list->cluster_cnt = 0;
 	add_list->data = data;
 	if (head->total_cnt == 0)
 		head->head = add_list;
@@ -55,7 +58,7 @@ t_head	*push(t_head *head_in, int data)
 
 	if (head_in->total_cnt == 0)
 	{
-		if (!list_add(head_in, data))
+		if (!list_add(head_in, data, 0))
 			return (0);
 	}
 	else

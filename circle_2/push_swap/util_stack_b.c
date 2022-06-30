@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:29:04 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/29 19:03:20 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:10:06 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,16 @@ void	rrb(t_head *b)
 	t_list	*temp;
 	t_list	*temp2;
 	int		pull_data;
+	int		sort_check;
 
 	temp = b->head;
+	sort_check = 0;
 	while (temp->next)
 	{
 		if (!(temp->next->next))
 		{
+			if (temp->next->cluster_cnt != 0)
+				sort_check = temp->next->cluster_cnt;
 			pull_data = temp->next->data;
 			temp2 = temp->next;
 			temp->next = 0;
@@ -55,12 +59,18 @@ void	rrb(t_head *b)
 		temp = temp->next;
 	}
 	b = push(b, pull_data);
+	if (sort_check != 0)
+		b->head->cluster_cnt = sort_check;
 }
 
 void	rb(t_head *b)
 {
 	int		pull_data;
+	int		sort_check;
 
+	sort_check = 0;
+	if (b->head->cluster_cnt == -1)
+		sort_check = -1;
 	pull(b, &pull_data);
-	list_add(b, pull_data);
+	list_add(b, pull_data, sort_check);
 }

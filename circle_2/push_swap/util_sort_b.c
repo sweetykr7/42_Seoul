@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:15:16 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/30 13:58:29 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:40:49 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	write_sort_complete_b(t_head *b, int size)
 	{
 		temp->cluster_cnt = -1;
 		temp = temp->next;
+		size--;
 	}
 }
 
@@ -30,6 +31,15 @@ void	sort_b(t_head *a, t_head *b, int size)
 	int	para2;
 	int	para3;
 
+	if (check_asc_sort_b(b, size) == 1)
+	{
+		while (size > 0)
+		{
+			pa(a, b);
+			size--;
+		}
+		return ;
+	}
 	para1 = b->head->data;
 	para2 = b->head->next->data;
 	if (size == 3)

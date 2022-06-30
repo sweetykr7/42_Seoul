@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/30 11:17:57 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:01:28 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct pivot_struct
 }	t_pivot;
 
 t_head	*new_head(void);
-t_head	*list_add(t_head *head, int data);
+t_head	*list_add(t_head *head, int data, int sort_check);
 t_head	*push(t_head *head_in, int data);
 t_head	*pull(t_head *head_in, int *pull_data);
 
@@ -65,5 +65,6 @@ void	sort_b_case_5(t_head *a, t_head *b);
 void	sort_a(t_head *a, t_head *b, int size);
 void	sort_b(t_head *a, t_head *b, int size);
 int		*int_loc(int size, t_pivot *pivot);
+int		check_asc_sort_a(t_head *a, int size);
 
 #endif

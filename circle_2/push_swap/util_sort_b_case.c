@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:15:16 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/29 13:39:10 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:47:17 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ void	sort_b_case_2(t_head *a, t_head *b)
 
 void	sort_b_case_3(t_head *a, t_head *b)
 {
-	rrb(b);
+	rb(b);
+	rb(b);
 	pa(a, b);
+	rrb(b);
+	rrb(b);
 	pa(a, b);
 	pa(a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:30:45 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/30 14:48:08 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:17:11 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include "util_stack_a.c"
 #include "util_stack_b.c"
 #include "utils.c"
+#include "util_sort_a.c"
+#include "util_sort_a_case.c"
+#include "util_sort_b.c"
+#include "util_sort_b_case.c"
 
 
 int	lstsize(t_list *lst)
@@ -49,12 +53,14 @@ int	lstsize(t_list *lst)
 
 void	divide_stack_a_pivot1(t_head *a, t_head *b, int *pivot_cnt1)
 {
+	a->head->cluster_cnt = 0;
 	pb(a, b);
 	*pivot_cnt1 = *pivot_cnt1 + 1;
 }
 
 void	divide_stack_a_pivot2(t_head *a, t_head *b, int *pivot_cnt2)
 {
+	a->head->cluster_cnt = 0;
 	pb(a, b);
 	rb(b);
 	*pivot_cnt2 = *pivot_cnt2 + 1;
@@ -62,6 +68,7 @@ void	divide_stack_a_pivot2(t_head *a, t_head *b, int *pivot_cnt2)
 
 void	divide_stack_a_pivot3(t_head *a, t_head *b, int *pivot_cnt3)
 {
+	a->head->cluster_cnt = 0;
 	ra(a);
 	*pivot_cnt3 = *pivot_cnt3 + 1;
 }
@@ -93,7 +100,7 @@ void	divide_stack_a(t_head *a, t_head *b, int pivot1, int pivot2)
 	i = pivot2_cnt + 1;
 	while (--i > 0)
 		rrb(b);
-	i = pivot3_cnt+ 1;
+	i = pivot3_cnt + 1;
 	while (--i > 0)
 		rra(a);
 	b->head->cluster_cnt = pivot2_cnt;
@@ -102,12 +109,14 @@ void	divide_stack_a(t_head *a, t_head *b, int pivot1, int pivot2)
 
 void	divide_stack_b_pivot1(t_head *a, t_head *b, int *pivot_cnt1)
 {
+	b->head->cluster_cnt = 0;
 	rb(b);
 	*pivot_cnt1 = *pivot_cnt1 + 1;
 }
 
 void	divide_stack_b_pivot2(t_head *a, t_head *b, int *pivot_cnt2)
 {
+	b->head->cluster_cnt = 0;
 	pa(a, b);
 	ra(a);
 	*pivot_cnt2 = *pivot_cnt2 + 1;
@@ -115,6 +124,7 @@ void	divide_stack_b_pivot2(t_head *a, t_head *b, int *pivot_cnt2)
 
 void	divide_stack_b_pivot3(t_head *a, t_head *b, int *pivot_cnt3)
 {
+	b->head->cluster_cnt = 0;
 	pa(a, b);
 	*pivot_cnt3 = *pivot_cnt3 + 1;
 }
@@ -197,7 +207,9 @@ t_pivot	get_pivot(t_head *a)
 	return (p);
 }
 
-void	divide_stack_recur(t_head *a, t_head *b)
+
+
+void	divide_stack_recur(t_head *a, t_head *b, int total_cnt)
 {
 	//피벗 추출하는거(이안에 정렬을 해야만 피벗 추출 가능함.)
 	//정렬확인?
@@ -207,36 +219,42 @@ void	divide_stack_recur(t_head *a, t_head *b)
 
 	int	test_point;
 
+	if (check_sort_a(a) == 1 && a->total_cnt == total_cnt)
+		return ;
 	if (check_sort_a(a) == 0)
 	{
-		while (a->head->cluster_cnt != 0 && a->head->cluster_cnt != -1)
+		while (a->head->cluster_cnt == 0 || a->head->cluster_cnt == -1)
 			rra(a);
 		if (1 <= a->head->cluster_cnt && a->head->cluster_cnt <= 3)
-			sort_a(a, b, a->head->cluster_cnt);
+		{
+			sort_a(a, b, a->head->cluster_cnt);			
+		}
 		else
 		{
 			pivot = get_pivot(a);
 			if (pivot.pivot1 != 0 || pivot.pivot2 != 0)
 			{
 				divide_stack_a(a, b, pivot.pivot1, pivot.pivot2);
-				divide_stack_recur(a, b);
 			}
 		}
+		test_point = 0;
 	}
 	else      //a가 다 정렬되었을때 이쪽으로 b를 정리
 	{
 		if (b->head->cluster_cnt <= 3)
-			sort_b(a, b, a->head->cluster_cnt);
+		{
+			sort_b(a, b, b->head->cluster_cnt);
+		}
 		else
 		{
 			pivot = get_pivot(b);
 			if (pivot.pivot1 != 0 || pivot.pivot2 != 0)
 			{
-				divide_stack_a(a, b, pivot.pivot1, pivot.pivot2);
-				divide_stack_recur(a, b);
+				divide_stack_b(a, b, pivot.pivot1, pivot.pivot2);
 			}
 		}
 	}
+	divide_stack_recur(a, b, total_cnt);
 		//3등분?
 	//a에는 가장 무거운거
 	//b에는 |2 1순서로 넣는다.
@@ -254,6 +272,7 @@ int	main(int ac, char **av)
 	int	i;
 	t_head *a;
 	t_head *b;
+	int total_cnt;
 
 	//예외처리들
 	//split으로 가져오기	
@@ -263,15 +282,15 @@ int	main(int ac, char **av)
 	i = 0;
 	while (i < 23)
 	{
-		list_add(a, test[i]);
+		list_add(a, test[i], 0);
 		i++;
 	}
 	a->head->cluster_cnt = 23; // 나중에 갯수 카운팅해서 넣어주면 됨.
 	//숫자 카운팅 해줘야함. total_cnt와 lst에 cluster_cnt에도 카운팅 하도록 하자.
 	//lstsize() 파악만 되면 굳이 안해줘도 될듯?
 
-
-	divide_stack_recur(a, b);
+	total_cnt = 23;
+	divide_stack_recur(a, b, total_cnt);
 	
 	//말록 해제 했는지 여부 확인
 	return (0);
