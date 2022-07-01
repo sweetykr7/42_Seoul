@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:39:29 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/30 19:54:10 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:37:31 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_head	*list_add(t_head *head, int data, int sort_check)
 	return (head);
 }
 
-t_head	*push(t_head *head_in, int data)
+void	push(t_head *head_in, int data)
 {
 	t_list	*add_list;
 	t_list	*temp;
@@ -59,32 +59,60 @@ t_head	*push(t_head *head_in, int data)
 	if (head_in->total_cnt == 0)
 	{
 		if (!list_add(head_in, data, 0))
-			return (0);
+			return ;
 	}
 	else
 	{
 		add_list = (t_list *)malloc(sizeof(t_list));
 		if (!add_list)
-			return (0);
+			return ;
 		temp = head_in->head;
 		add_list->data = data;
 		head_in->head = add_list;
 		add_list->next = temp;
 		head_in->total_cnt = head_in->total_cnt + 1;
 	}
-	return (head_in);
 }
 
-t_head	*pull(t_head *head_in, int *pull_data)
+// void	pull(t_head *head_in, int *pull_data)
+// {
+// 	t_list	*temp;
+// 	t_list	*temp2;
+
+// 	if (head_in->total_cnt == 0)
+// 		return ;
+// 	temp = head_in->head;
+// 	*pull_data = head_in->head->data;
+// 	if (head_in->head->next)
+// 	{
+// 		temp2 = head_in->head->next;
+// 		head_in->head = 0;
+// 		head_in->head = temp2;
+// 	}
+// 	else
+// 		head_in->head = 0;
+// 	temp->next = 0;
+// 	free(temp);
+// 	head_in->total_cnt = head_in->total_cnt - 1;
+// }
+
+void	pull(t_head *head_in, int *pull_data)
 {
 	t_list	*temp;
+	t_list	*temp2;
 
 	if (head_in->total_cnt == 0)
-		return (0);
-	temp = head_in->head->next;
+		return ;
+	if (head_in->head->next)
+		temp = head_in->head->next;
+	else
+		temp = 0;
 	*pull_data = head_in->head->data;
-	free(head_in->head);
+	temp2 = head_in->head;
+	//head_in->head = 0;
 	head_in->head = temp;
+	// free(temp2->next);
+	// temp2->next = 0;
+	// free(temp2);
 	head_in->total_cnt = head_in->total_cnt - 1;
-	return (head_in);
 }

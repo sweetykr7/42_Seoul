@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/06/30 19:26:45 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:45:42 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,52 @@ int	check_asc_sort_b(t_head *b, int size)
 		i--;
 	}
 	return (1);
+}
+
+
+int	strsize(char *s)
+{
+	int	size;
+
+	size = 0;
+	while (*s != '\0')
+	{
+		size++;
+		s++;
+	}
+	return (size);
+}
+
+void all_free(t_head *h)
+{
+	t_list	*temp;
+
+	while (h->head)
+	{
+		if (h->head->next)
+			temp = h->head->next;
+		else
+			temp = 0;
+		free (h->head);
+		h->head = temp;
+	}
+	h = 0;
+	free(h);
+}
+
+void list_free(t_list *lst)
+{
+	t_list	*temp;
+
+	while (lst)
+	{
+		if (lst->next)
+			temp = lst->next;
+		else
+			temp = 0;
+		lst = 0;
+		free (lst);
+		if (temp)
+			lst = temp;
+	}
 }

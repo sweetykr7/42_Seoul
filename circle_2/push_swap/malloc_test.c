@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   malloc_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:30:45 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/01 17:36:47 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:40:40 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,21 +172,12 @@ void	divide_stack_b(t_head *a, t_head *b, t_pivot pivot, char *print_buf)
 int	check_sort_a(t_head *a)
 {
 	t_list	*temp;
-	int		flag;
 
 	temp = a->head;
-	flag = 0;
-	if (a->head->cluster_cnt == -1)
-		flag = -1;
 	while (temp)
 	{
 		if (temp->cluster_cnt != -1)
-		{
-			if (flag == -1)
-				return (2);
-			else
-				return (0);
-		}
+			return (0);
 		if (!temp->next)
 			break ;
 		temp = temp->next;
@@ -232,26 +223,19 @@ void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, char *print_buf)
 	t_pivot	pivot;
 
 	int	test_point;
-	int	check_sort_a_res;
 	printf("pass the divide_stack_recur function\n");
 	if (a->total_cnt == total_cnt && check_sort_a(a) == 1)
 		return ;
 	test_point = 0;
 	printf("pass the point1\n");
-	check_sort_a_res = 0;
-	check_sort_a_res = check_sort_a(a);
-	if (check_sort_a_res == 2)
+	if (check_sort_a(a) == 0)
 	{
+		printf("pass the point2\n");
 		while (a->head->cluster_cnt == 0 || a->head->cluster_cnt == -1)
 		{
 			rra(a, print_buf);
 			printf("pass here\n");			
 		}
-		check_sort_a_res = check_sort_a(a);
-	}
-	if (check_sort_a_res == 0)
-	{
-		printf("pass the point2\n");
 		printf("pass the point3\n");
 		if (1 <= a->head->cluster_cnt && a->head->cluster_cnt <= 3)
 		{
@@ -318,31 +302,28 @@ int	main(int ac, char **av)
 	//split으로 가져오기	
 	//가져온거 a에 집어 넣기
 
-	print_buf = (char *)malloc(sizeof(char) * 1);
-	if (!print_buf)
-		return (0);
-	print_buf[0] = '\0';
+	
 	a = new_head();
 	b = new_head();
 	i = 0;
-	while (i < 23)
-	{
-		list_add(a, test[i], 0);
-		i++;
-	}
+	
+	list_add(a, 1, 0);
+	list_add(a, 2, 0);
+	list_add(a, 3, 0);
+	
 	a->head->cluster_cnt = 23; // 나중에 갯수 카운팅해서 넣어주면 됨.
 	//숫자 카운팅 해줘야함. total_cnt와 lst에 cluster_cnt에도 카운팅 하도록 하자.
 	//lstsize() 파악만 되면 굳이 안해줘도 될듯?
 
 	total_cnt = 23;
 	//print_buf = "aa";
-	divide_stack_recur(a, b, total_cnt, print_buf);
+	//divide_stack_recur(a, b, total_cnt, print_buf);
 	//print_buf[strsize(print_buf) - 1] = '\0';
 	//말록 해제 했는지 여부 확인
 	//printf("%s",print_buf);
 	printf("complete\n");
 	all_free(a);
-	all_free(b);
+	//all_free(b);
 	printf("complete\n");
 	return (0);
 }
