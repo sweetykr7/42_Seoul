@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:30:45 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/02 14:36:55 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:41:40 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	main(int ac, char **av)
 	ac = 0;
 	**av = 0;
 	//int	test[23] = {1,40,-1,-2,-15,5,15,20,3,-10,11,-60,2,7,4,-50,-40,-30,6,8,9,10,12};
-	int	test[4] = {1,40,-1,-2};
+	//int	test[4] = {1,40,-1,-2};
+	int	test[5] = {1,40,-1,-2,-15};
 	int cnt;
 	int	i;
 	t_head *a;
@@ -56,7 +57,7 @@ int	main(int ac, char **av)
 	a = new_head();
 	b = new_head();
 	i = 0;
-	cnt = 4;
+	cnt = 5;
 	while (i < cnt)
 	{
 		list_add(a, test[i], 0);

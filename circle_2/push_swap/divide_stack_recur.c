@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:48:52 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/02 14:34:33 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:40:38 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, char *print_buf)
 	check_sort_a_res = check_sort_a(a);
 	if (a->total_cnt == total_cnt && check_sort_a_res == 1)
 		return ;
-	check_sort_a_res = 0;
-	check_sort_a_res = check_sort_a(a);
 	if (check_sort_a_res == 2)
 	{
 		while (a->head->cluster_cnt == 0 || a->head->cluster_cnt == -1)
