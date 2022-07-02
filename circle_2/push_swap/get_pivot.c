@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_print_buf.c                                   :+:      :+:    :+:   */
+/*   get_pivot.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 11:05:32 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/02 12:55:18 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/07/02 11:47:40 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/07/02 12:54:36 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*insert_print_buf(char *print_buf, char *str)
+t_pivot	get_pivot(t_head *a)
 {
+	t_pivot	p;
+	t_list	*temp;
+	int		*sort;
+	int		size;
 	int		i;
-	int		j;
-	char	*rv;
 
-	if (!print_buf || !str)
-		return (NULL);
-	rv = (char *)malloc(sizeof(char) * (strsize(print_buf) + strsize(str) + 1));
-	if (!rv)
-		return (NULL);
+	size = a->head->cluster_cnt;
+	sort = int_loc(size, &p);
+	if (!sort)
+		return (p);
+	temp = a->head;
 	i = 0;
-	while (i < strsize(print_buf))
+	while (i < size && temp)
 	{
-		rv[i] = print_buf[i];
+		sort[i] = temp->data;
+		temp = temp->next;
 		i++;
-	}	
-	j = 0;
-	while (j < strsize(str))
-	{
-		rv[i + j] = str[j];
-		j++;
 	}
-	rv[i + j] = '\0';
-	return (rv);
+	sort = sort_arr(size, sort);
+	p.pivot1 = sort[(size / 3)];
+	p.pivot2 = sort[((size * 2) / 3)];
+	free(sort);
+	return (p);
 }

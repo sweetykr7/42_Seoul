@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   util_sort_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/01 16:45:42 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/07/02 11:38:52 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/07/02 14:34:07 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	*int_loc(int size, t_pivot *pivot)
-{
-	int	*p;
-	int	i;
-
-	p = (int *)malloc(sizeof(int) * size);
-	if (!p)
-	{	
-		pivot->pivot1 = 0;
-		pivot->pivot2 = 0;
-		return (0);
-	}
-	i = size;
-	while (i > 0)
-	{
-		p[i] = 0;
-		i--;
-	}
-	return (p);
-}
 
 int	*sort_arr(int size, int *sort)
 {
@@ -67,15 +46,11 @@ int	check_asc_sort_a(t_head *a, int size)
 
 	temp = a->head;
 	i = size;
-	while (i > 0 && temp)
+	while (i > 0 && temp && temp->next)
 	{
 		if (temp->next)
-		{
 			if (temp->data > temp->next->data)
 				return (0);
-		}
-		else
-			break ;
 		temp = temp->next;
 		i--;
 	}
@@ -90,22 +65,18 @@ int	check_asc_sort_a(t_head *a, int size)
 	return (1);
 }
 
-int	check_asc_sort_b(t_head *b, int size)
+int	check_desc_sort_b(t_head *b, int size)
 {
 	t_list	*temp;
 	int		i;
 
 	temp = b->head;
 	i = size;
-	while (i > 0 && temp)
+	while (i > 0 && temp && temp->next)
 	{
 		if (temp->next)
-		{
 			if (temp->data < temp->next->data)
 				return (0);
-		}
-		else
-			break ;
 		temp = temp->next;
 		i--;
 	}
@@ -120,50 +91,27 @@ int	check_asc_sort_b(t_head *b, int size)
 	return (1);
 }
 
-
-int	strsize(char *s)
-{
-	int	size;
-
-	size = 0;
-	while (*s != '\0')
-	{
-		size++;
-		s++;
-	}
-	return (size);
-}
-
-void all_free(t_head *h)
+int	check_sort_a(t_head *a)
 {
 	t_list	*temp;
+	int		flag;
 
-	while (h->head)
+	temp = a->head;
+	flag = 0;
+	if (a->head->cluster_cnt == -1)
+		flag = -1;
+	while (temp)
 	{
-		if (h->head->next)
-			temp = h->head->next;
-		else
-			temp = 0;
-		free (h->head);
-		h->head = temp;
+		if (temp->cluster_cnt != -1)
+		{
+			if (flag == -1)
+				return (2);
+			else
+				return (0);
+		}
+		if (!temp->next)
+			break ;
+		temp = temp->next;
 	}
-	h = 0;
-	free(h);
-}
-
-void list_free(t_list *lst)
-{
-	t_list	*temp;
-
-	while (lst)
-	{
-		if (lst->next)
-			temp = lst->next;
-		else
-			temp = 0;
-		lst = 0;
-		free (lst);
-		if (temp)
-			lst = temp;
-	}
+	return (1);
 }

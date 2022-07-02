@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_print_buf.c                                   :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 11:05:32 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/02 12:55:18 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/07/02 14:13:51 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*insert_print_buf(char *print_buf, char *str)
+t_pc	*pivot_cnt_pre_set(t_pc *pivot_cnt)
 {
-	int		i;
-	int		j;
-	char	*rv;
-
-	if (!print_buf || !str)
-		return (NULL);
-	rv = (char *)malloc(sizeof(char) * (strsize(print_buf) + strsize(str) + 1));
-	if (!rv)
-		return (NULL);
-	i = 0;
-	while (i < strsize(print_buf))
-	{
-		rv[i] = print_buf[i];
-		i++;
-	}	
-	j = 0;
-	while (j < strsize(str))
-	{
-		rv[i + j] = str[j];
-		j++;
-	}
-	rv[i + j] = '\0';
-	return (rv);
+	pivot_cnt = (t_pc *)malloc(sizeof(pivot_cnt));
+	if (!pivot_cnt)
+		return (0);
+	pivot_cnt->pivot1_cnt = 0;
+	pivot_cnt->pivot2_cnt = 0;
+	pivot_cnt->pivot3_cnt = 0;
+	return (pivot_cnt);
 }

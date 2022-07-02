@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:29:04 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/01 14:09:30 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/02 12:17:57 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,13 @@ void	sb(t_head *b, char *print_buf)
 	//print_buf = insert_print_buf(print_buf, "sb\n");
 }
 
-void	rrb(t_head *b, char *print_buf)
+void	rrb(t_head *b, int sort_check, char *print_buf)
 {
 	t_list	*temp;
 	t_list	*temp2;
-	int		pull_data;
-	int		sort_check;
+	int		pull_data;	
 
 	temp = b->head;
-	sort_check = 0;
 	while (temp->next)
 	{
 		if (!(temp->next->next))

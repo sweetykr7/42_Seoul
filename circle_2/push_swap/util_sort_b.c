@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:15:16 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/01 11:01:06 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/02 12:08:40 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,32 @@ void	write_sort_complete_b(t_head *b, int size)
 	}
 }
 
-void	sort_b(t_head *a, t_head *b, int size, char *print_buf)
+void	sort_b_cnt_3(t_head *a, t_head *b, char *print_buf)
 {
 	int	para1;
 	int	para2;
 	int	para3;
 
-	if (check_asc_sort_b(b, size) == 1)
+	para1 = b->head->data;
+	para2 = b->head->next->data;
+	para3 = b->head->next->next->data;
+	write_sort_complete_b(b, 3);
+	if (para1 < para2 && para2 < para3)
+		sort_b_case_1(a, b, print_buf);
+	else if (para1 < para3 && para3 < para2)
+		sort_b_case_2(a, b, print_buf);
+	else if (para2 < para1 && para1 < para3)
+		sort_b_case_3(a, b, print_buf);
+	else if (para3 < para1 && para1 < para2)
+		sort_b_case_4(a, b, print_buf);
+	else if (para2 < para3 && para3 < para1)
+		sort_b_case_5(a, b, print_buf);
+	return ;
+}
+
+void	sort_b(t_head *a, t_head *b, int size, char *print_buf)
+{
+	if (check_desc_sort_b(b, size) == 1)
 	{
 		while (size > 0)
 		{
@@ -41,23 +60,7 @@ void	sort_b(t_head *a, t_head *b, int size, char *print_buf)
 		return ;
 	}
 	if (size == 3)
-	{
-		para1 = b->head->data;
-		para2 = b->head->next->data;
-		para3 = b->head->next->next->data;
-		write_sort_complete_b(b, 3);
-		if (para1 < para2 && para2 < para3)
-			sort_b_case_1(a, b, print_buf);
-		else if (para1 < para3 && para3 < para2)
-			sort_b_case_2(a, b, print_buf);
-		else if (para2 < para1 && para1 < para3)
-			sort_b_case_3(a, b, print_buf);
-		else if (para3 < para1 && para1 < para2)
-			sort_b_case_4(a, b, print_buf);
-		else if (para2 < para3 && para3 < para1)
-			sort_b_case_5(a, b, print_buf);
-		return ;
-	}
+		sort_b_cnt_3(a, b, print_buf);
 	else if (size == 2)
 	{
 		write_sort_complete_b(b, 2);
