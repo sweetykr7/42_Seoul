@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:38:52 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/02 14:34:07 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:40:16 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	check_asc_sort_a(t_head *a, int size)
 {
 	t_list	*temp;
 	int		i;
+	int		pre_flag;
 
 	temp = a->head;
 	i = size;
@@ -56,9 +57,13 @@ int	check_asc_sort_a(t_head *a, int size)
 	}
 	temp = a->head;
 	i = size;
+	pre_flag = 0;
 	while (i > 0 && temp)
 	{
+		if (pre_flag == -1 && temp->cluster_cnt > 0)
+			break ;
 		temp->cluster_cnt = -1;
+		pre_flag = temp->cluster_cnt;
 		temp = temp->next;
 		i--;
 	}

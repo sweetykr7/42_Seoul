@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:15:16 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/02 12:08:40 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:25:15 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	write_sort_complete_b(t_head *b, int size)
 	}
 }
 
-void	sort_b_cnt_3(t_head *a, t_head *b, char *print_buf)
+void	sort_b_cnt_3(t_head *a, t_head *b, t_buf *print_buf)
 {
 	int	para1;
 	int	para2;
@@ -48,12 +48,12 @@ void	sort_b_cnt_3(t_head *a, t_head *b, char *print_buf)
 	return ;
 }
 
-void	sort_b(t_head *a, t_head *b, int size, char *print_buf)
+void	sort_b(t_head *a, t_head *b, int size, t_buf *print_buf)
 {
 	if (check_desc_sort_b(b, size) == 1)
 	{
 		while (size > 0)
-		{
+		{			
 			pa(a, b, print_buf);
 			size--;
 		}

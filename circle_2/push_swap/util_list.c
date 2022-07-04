@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:39:29 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/02 12:20:41 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:40:21 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,21 @@ void	pull(t_head *head_in, int *pull_data)
 	head_in->head = temp;
 	free(temp2);
 	head_in->total_cnt = head_in->total_cnt - 1;
+}
+
+int	lst_last_data(t_list *lst)
+{
+	int		last_data;
+	t_list	*temp;
+
+	temp = lst;
+	while (temp)
+	{
+		last_data = temp->data;
+		if (temp->next)
+			temp = temp->next;
+		else
+			break ;
+	}
+	return (last_data);
 }
