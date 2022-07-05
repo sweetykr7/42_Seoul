@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_stack_b.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: joey <joey@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:29:04 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/05 15:36:43 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:50:46 by joey             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	pb(t_head *a, t_head *b, t_buf *print_buf)
 	push(b, pull_data);
 	//b->head->cluster_cnt = cluster_cnt;
 	insert_print_buf(print_buf, "pb");
+	printf("pb\n");
 }
 
 void	sb(t_head *b, t_buf *print_buf)
@@ -48,6 +49,7 @@ void	sb(t_head *b, t_buf *print_buf)
 	push(b, pull_data_2);
 	b->head->cluster_cnt = cluster_cnt2;
 	insert_print_buf(print_buf, "sb");
+	printf("sb\n");
 }
 
 void	rrb(t_head *b, int sort_check, t_buf *print_buf)
@@ -59,10 +61,12 @@ void	rrb(t_head *b, int sort_check, t_buf *print_buf)
 	pull_data = 0;
 	if (b->total_cnt == 1)
 		return ;
+	if (b->total_cnt == 2)
+		return sb(b, print_buf);
 	temp = b->head;
 	while (temp->next)
 	{
-		if (!(temp->next))
+		if (!(temp->next->next))
 		{
 			if (temp->cluster_cnt != 0)
 				sort_check = temp->next->cluster_cnt;
@@ -75,10 +79,12 @@ void	rrb(t_head *b, int sort_check, t_buf *print_buf)
 		}
 		temp = temp->next;
 	}
+	printf("check rrb's pull_data : %d",pull_data);
 	push(b, pull_data);
 	if (sort_check != 0)
 		b->head->cluster_cnt = sort_check;
 	insert_print_buf(print_buf, "rrb");
+	printf("rrb\n");
 }
 
 void	rb(t_head *b, t_buf *print_buf)
@@ -89,10 +95,13 @@ void	rb(t_head *b, t_buf *print_buf)
 	pull_data = 0;
 	if (b->total_cnt == 1)
 		return ;
+	if (b->total_cnt == 2)
+		return sb(b, print_buf);
 	sort_check = 0;
 	if (b->head->cluster_cnt == -1)
 		sort_check = -1;
 	pull_data = pull(b);
 	list_add(b, pull_data, sort_check);
 	insert_print_buf(print_buf, "rb");
+	printf("rb\n");
 }

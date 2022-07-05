@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_divide_stack_a.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: joey <joey@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:28:13 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/05 14:34:31 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:52:12 by joey             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,21 @@ void	divide_stack_a(t_head *a, t_head *b, t_pivot pivot, t_buf *buf)
 	{
 		if (a->head->data <= pivot.pivot1)
 		{
+			printf("divide_stack_a check 1_start\n");
 			divide_stack_a_pivot1(a, b, &pivot_cnt->pivot1_cnt, buf);
-			printf("divide_stack_a check 1\n");
+			printf("divide_stack_a check 1_pass\n");
 		}
 		else if (a->head->data <= pivot.pivot2)
 		{
+			printf("divide_stack_a check 2_start\n");
 			divide_stack_a_pivot2(a, b, &pivot_cnt->pivot2_cnt, buf);
-			printf("divide_stack_a check 2\n");
+			printf("divide_stack_a check 2_pass\n");
 		}
 		else
 		{
+			printf("divide_stack_a check 3_start\n");
 			divide_stack_a_pivot3(a, &pivot_cnt->pivot3_cnt, buf);
-			printf("divide_stack_a check 3\n");
+			printf("divide_stack_a check 3_pass\n");
 		}
 	}
 	pivot_cnt_set_a(a, b, pivot_cnt, buf);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_stack_a.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: joey <joey@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:29:04 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/05 15:37:16 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:10:34 by joey             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	pa(t_head *a, t_head *b, t_buf *print_buf)
 	// 	a->head->cluster_cnt = -1;
 	a->head->cluster_cnt = cluster_cnt;
 	insert_print_buf(print_buf, "pa");
+	printf("pa\n");
 }
 
 void	sa(t_head *a, t_buf *print_buf)
@@ -54,6 +55,7 @@ void	sa(t_head *a, t_buf *print_buf)
 	push(a, pull_data_2);
 	a->head->cluster_cnt = cluster_cnt2;
 	insert_print_buf(print_buf, "sa");
+	printf("sa\n");
 }
 
 void	rra(t_head *a, int sort_check, t_buf *print_buf)
@@ -69,9 +71,11 @@ void	rra(t_head *a, int sort_check, t_buf *print_buf)
 	temp = a->head;
 	if (a->total_cnt == 1)
 		return ;
+	if (a->total_cnt == 2)
+		return sa(a, print_buf);
 	while (temp->next)
 	{
-		if (!(temp->next))
+		if (!(temp->next->next))
 		{
 			// if (temp->next->cluster_cnt != 0)
 			// 	sort_check = temp->next->cluster_cnt;
@@ -90,6 +94,7 @@ void	rra(t_head *a, int sort_check, t_buf *print_buf)
 	// if (sort_check != 0)
 	// 	a->head->cluster_cnt = sort_check;
 	insert_print_buf(print_buf, "rra");
+	printf("rra\n");
 }
 
 void	ra(t_head *a, t_buf *print_buf)
@@ -100,10 +105,13 @@ void	ra(t_head *a, t_buf *print_buf)
 	pull_data = 0;
 	if (a->total_cnt == 1)
 		return ;
+	if (a->total_cnt == 2)
+		return sa(a, print_buf);
 	sort_check = 0;
 	if (a->head->cluster_cnt == -1)
 		sort_check = -1;
 	pull_data = pull(a);
 	list_add(a, pull_data, sort_check);
 	insert_print_buf(print_buf, "ra");
+	printf("ra\n");
 }
