@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:28:13 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/04 15:25:19 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:34:31 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,20 @@ void	divide_stack_a(t_head *a, t_head *b, t_pivot pivot, t_buf *buf)
 	while (--i > 0)
 	{
 		if (a->head->data <= pivot.pivot1)
+		{
 			divide_stack_a_pivot1(a, b, &pivot_cnt->pivot1_cnt, buf);
+			printf("divide_stack_a check 1\n");
+		}
 		else if (a->head->data <= pivot.pivot2)
+		{
 			divide_stack_a_pivot2(a, b, &pivot_cnt->pivot2_cnt, buf);
+			printf("divide_stack_a check 2\n");
+		}
 		else
+		{
 			divide_stack_a_pivot3(a, &pivot_cnt->pivot3_cnt, buf);
+			printf("divide_stack_a check 3\n");
+		}
 	}
 	pivot_cnt_set_a(a, b, pivot_cnt, buf);
 	free(pivot_cnt);

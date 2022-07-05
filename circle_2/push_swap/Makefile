@@ -6,7 +6,7 @@
 #    By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 15:13:46 by sooyokim          #+#    #+#              #
-#    Updated: 2022/07/04 18:03:02 by sooyokim         ###   ########.fr        #
+#    Updated: 2022/07/05 13:22:11 by sooyokim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJECTS = $(SOURCES:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME) clean
+all: $(NAME)
 
 bonus: $(NAME)
 

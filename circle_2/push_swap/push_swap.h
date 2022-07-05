@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/04 20:52:30 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:21:52 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		atoi_input(const char *str);
 t_head	*new_head(void);
 t_head	*list_add(t_head *head, int data, int sort_check);
 void	push(t_head *head_in, int data);
-void	pull(t_head *head_in, int *pull_data);
+int		pull(t_head *head_in);
 int		lst_last_data(t_list *lst);
 
 void	pa(t_head *a, t_head *b, t_buf *print_buf);
@@ -119,6 +119,8 @@ void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, t_buf *buf);
 t_buf	*initial_print_buf(void);
 void	insert_print_buf(t_buf *buf, char *str);
 void	print_all(char const *s);
+void	print_free(t_buf *buf);
+
 void	sort_a_optimize(t_head *a, t_buf *print_buf);
 
 #endif

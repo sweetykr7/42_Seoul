@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:39:29 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/04 19:40:21 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:27:37 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,22 +74,25 @@ void	push(t_head *head_in, int data)
 	}
 }
 
-void	pull(t_head *head_in, int *pull_data)
+int	pull(t_head *head_in)
 {
 	t_list	*temp;
 	t_list	*temp2;
+	int		pull_data;
 
+	pull_data = 0;
 	if (head_in->total_cnt == 0)
-		return ;
+		return (pull_data);
 	if (head_in->head->next)
 		temp = head_in->head->next;
 	else
 		temp = 0;
-	*pull_data = head_in->head->data;
+	pull_data = head_in->head->data;
 	temp2 = head_in->head;
 	head_in->head = temp;
 	free(temp2);
 	head_in->total_cnt = head_in->total_cnt - 1;
+	return (pull_data);
 }
 
 int	lst_last_data(t_list *lst)

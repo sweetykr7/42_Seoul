@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:31:46 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/04 15:27:07 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/05 10:28:55 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,23 @@ void	pivot_cnt_set_b(t_head *a, t_head *b, t_pc *pivot_cnt, t_buf *buf)
 {
 	int		i;
 	t_list	*temp;
-
-	a->head->cluster_cnt = pivot_cnt->pivot3_cnt;
-	i = pivot_cnt->pivot1_cnt + 1;
-	while (--i > 0)
-		rrb(b, 0, buf);
-	b->head->cluster_cnt = pivot_cnt->pivot1_cnt;
-	temp = a->head;
-	i = a->total_cnt - pivot_cnt->pivot2_cnt + 1;
-	while (--i > 0)
-		temp = temp->next;
-	temp->cluster_cnt = pivot_cnt->pivot2_cnt;
+	if (pivot_cnt->pivot3_cnt > 0)
+		a->head->cluster_cnt = pivot_cnt->pivot3_cnt;
+	if (pivot_cnt->pivot1_cnt > 0)
+	{
+		i = pivot_cnt->pivot1_cnt + 1;
+		while (--i > 0 && pivot_cnt->pivot1_cnt != b->total_cnt)
+			rrb(b, 0, buf);
+		b->head->cluster_cnt = pivot_cnt->pivot1_cnt;
+	}
+	if (pivot_cnt->pivot2_cnt > 0)
+	{
+		temp = a->head;
+		i = a->total_cnt - pivot_cnt->pivot2_cnt + 1;
+		while (--i > 0)
+			temp = temp->next;
+		temp->cluster_cnt = pivot_cnt->pivot2_cnt;
+	}
 	free(pivot_cnt);
 }
 
