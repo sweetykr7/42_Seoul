@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: joey <joey@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:30:45 by sooyokim          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/06 17:08:48 by sooyokim         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/05 18:36:46 by joey             ###   ########.fr       */
+>>>>>>> 5bacde3b30f7f8306311c73242efe815a428b1b9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +192,14 @@ int main(int ac, char **av)
 	// av[4] = "1 30 100 -100 200";
 	//av[1] = "1 14 15 20 12 8 4 11 17 18 7 5 16 2 6 9 10 3 13 19";
 	//av[1] = "15 11 17 7 18 16 2 13 12 14 20 4 10 5 3 1 9 8 6 19";
-	//av[1] = "25 4 1 34 20 15 23 32 18 33 30 36 22 6 27 5 10 8 40 21 29 9 37 24 12 11 7 14 35 19 3 26 16 38 39 13 17 31 28 2";
+	av[1] = "25 4 1 34 20 15 23 32 18 33 30 36 22 6 27 5 10 8 40 21 29 9 37 24 12 11 7 14 35 19 3 26 16 38 39 13 17 31 28 2";
 	//av[1] = "64 44 21 23 2 3 19 4 40 59 49 98 41 62 100 54 5 27 6 80 88 94 60 51 33 96 76 20 7 74 85 11 71 67 24 79 90 15 35 38 48 45 72 17 25 43 95 36 31 75 61 70 29 91 9 69 84 68 26 18 52 53 14 1 97 28 66 77 56 39 37 12 13 16 78 87 22 86 10 83 73 81 8 58 30 34 50 99 92 63 89 42 93 32 82 55 57 65 47 46 -100";
 	//av[1] = "5 4 3 2 1";
+<<<<<<< HEAD
 	//ac = 2;
+=======
+	ac = 2;
+>>>>>>> 5bacde3b30f7f8306311c73242efe815a428b1b9
 	get_number(av, ac, a);
 	a->head->cluster_cnt = a->total_cnt;
 	divide_stack_recur(a, b, a->total_cnt, buf);
@@ -201,6 +209,7 @@ int main(int ac, char **av)
 	// write(1,"s",1);
 	// write(1,"a",1);
 	// write(1,"\n",1);
+<<<<<<< HEAD
 	print_buf_out(buf);
 	// temp = a->head;
 	// i = 1;
@@ -215,6 +224,21 @@ int main(int ac, char **av)
 	// }
 	// printf("complete\n");
 	
+=======
+	temp = a->head;
+	i = 1;
+	while (i <= a->total_cnt)
+	{
+		printf("check list [%d] : %d \n",i,temp->data);
+		printf("cluster cnt [%d] : %d \n",i,temp->cluster_cnt);
+		i++;
+		if (temp->next)
+			temp = temp->next;
+		else
+			break;
+	}
+	printf("complete\n");
+>>>>>>> 5bacde3b30f7f8306311c73242efe815a428b1b9
 	all_free(a);
 	all_free(b);
 	free_print_buf(buf);
