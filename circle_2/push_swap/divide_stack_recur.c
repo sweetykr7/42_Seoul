@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   divide_stack_recur.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joey <joey@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:48:52 by sooyokim          #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2022/07/06 16:00:08 by sooyokim         ###   ########.fr       */
-=======
-/*   Updated: 2022/07/05 18:43:58 by joey             ###   ########.fr       */
->>>>>>> 5bacde3b30f7f8306311c73242efe815a428b1b9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,40 +67,6 @@ void	divide_stack_a_check(t_head *a, t_head *b, t_pivot pivot, t_buf *buf)
 	}
 }
 
-int	find_zero_data(t_head *a, t_head *b)
-{
-	t_list	*temp;
-	int			i;
-
-	temp = a->head;
-	i = 0;
-	while (i < a->total_cnt)
-	{
-		if (temp->data == 0)
-			return (-1);
-		i++;
-		if (temp->next)
-			temp = temp->next;
-		else
-			break;
-	}
-
-	temp = b->head;
-	i = 0;
-	while (i < b->total_cnt)
-	{
-		if (temp->data == 0)
-			return (-2);
-		i++;
-		if (temp->next)
-			temp = temp->next;
-		else
-			break;
-	}
-
-	return (1);
-}
-
 void	divide_stack_b_check(t_head *a, t_head *b, t_pivot pivot, t_buf *buf)
 {
 	if (b->head->cluster_cnt <= 3)
@@ -123,7 +85,6 @@ void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, t_buf *buf)
 {
 	t_pivot	pivot;
 	int		check_sort_a_res;
-<<<<<<< HEAD
 	// int		check_data_zero_res;
 
 	// check_data_zero_res = check_data_zero(a, b);
@@ -151,14 +112,6 @@ void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, t_buf *buf)
 	// 	}
 	// 	exit (0);
 	// }
-=======
-	int		test_point;
-
-	if (find_zero_data(a, b) == -1)
-		test_point = 0; //a쪽
-	if (find_zero_data(a, b) == -2)
-		test_point = 0; //b쪽
->>>>>>> 5bacde3b30f7f8306311c73242efe815a428b1b9
 	pivot.pivot1 = 0;
 	pivot.pivot2 = 0;
 	check_sort_a_res = 0;
