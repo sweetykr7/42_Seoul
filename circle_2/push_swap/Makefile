@@ -6,7 +6,7 @@
 #    By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 15:13:46 by sooyokim          #+#    #+#              #
-#    Updated: 2022/07/05 13:22:11 by sooyokim         ###   ########.fr        #
+#    Updated: 2022/07/06 12:03:37 by sooyokim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SOURCES = push_swap.c util_divide_stack_a.c util_divide_stack_b.c \
 		util_list.c util_print_buf.c \
 		util_sort_a.c util_sort_a_case.c util_sort_b.c util_sort_b_case.c \
 		util_sort_check.c \
-		util_stack_a.c util_stack_b.c \
+		util_stack.c \
 		utils_1.c utils_2.c \
 		util_sort_a_optimize_case.c util_sort_a_optimize.c \
 		divide_stack_recur.c get_pivot.c

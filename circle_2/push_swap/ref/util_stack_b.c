@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:29:04 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/05 15:36:43 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:35:27 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	pb(t_head *a, t_head *b, t_buf *print_buf)
 	push(b, pull_data);
 	//b->head->cluster_cnt = cluster_cnt;
 	insert_print_buf(print_buf, "pb");
+	printf("pass pb!\n");
 }
 
 void	sb(t_head *b, t_buf *print_buf)
@@ -48,6 +49,7 @@ void	sb(t_head *b, t_buf *print_buf)
 	push(b, pull_data_2);
 	b->head->cluster_cnt = cluster_cnt2;
 	insert_print_buf(print_buf, "sb");
+	printf("pass sb!\n");
 }
 
 void	rrb(t_head *b, int sort_check, t_buf *print_buf)
@@ -57,20 +59,22 @@ void	rrb(t_head *b, int sort_check, t_buf *print_buf)
 	int		pull_data;	
 
 	pull_data = 0;
+	temp = b->head;
 	if (b->total_cnt == 1)
 		return ;
-	temp = b->head;
+	if (b->total_cnt == 2)
+		return (sb(b, print_buf));
 	while (temp->next)
 	{
-		if (!(temp->next))
+		if (!(temp->next->next))
 		{
 			if (temp->cluster_cnt != 0)
 				sort_check = temp->next->cluster_cnt;
 			pull_data = temp->next->data;
 			temp2 = temp->next;
 			temp->next = 0;
-			b->total_cnt = b->total_cnt - 1;
 			free(temp2);
+			b->total_cnt = b->total_cnt - 1;
 			break ;
 		}
 		temp = temp->next;
@@ -79,6 +83,7 @@ void	rrb(t_head *b, int sort_check, t_buf *print_buf)
 	if (sort_check != 0)
 		b->head->cluster_cnt = sort_check;
 	insert_print_buf(print_buf, "rrb");
+	printf("pass rrb!\n");
 }
 
 void	rb(t_head *b, t_buf *print_buf)
@@ -95,4 +100,5 @@ void	rb(t_head *b, t_buf *print_buf)
 	pull_data = pull(b);
 	list_add(b, pull_data, sort_check);
 	insert_print_buf(print_buf, "rb");
+	printf("pass rb!\n");
 }

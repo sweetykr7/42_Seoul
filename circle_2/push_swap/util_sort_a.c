@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:15:16 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/04 16:54:14 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:41:11 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	sort_a(t_head *a, t_head *b, int size, t_buf *print_buf)
 	}
 	else if (size == 2)
 	{
-		sa(a, print_buf);
+		swap(a, print_buf, 'a');
 		write_sort_complete_a(a, 2);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:39:29 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/05 15:27:37 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:30:58 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,48 +51,33 @@ t_head	*list_add(t_head *head, int data, int sort_check)
 	return (head);
 }
 
-void	push(t_head *head_in, int data)
-{
-	t_list	*add_list;
-	t_list	*temp;
-
-	if (head_in->total_cnt == 0)
-	{
-		if (!list_add(head_in, data, 0))
-			return ;
-	}
-	else
-	{
-		add_list = (t_list *)malloc(sizeof(t_list));
-		if (!add_list)
-			return ;
-		temp = head_in->head;
-		add_list->data = data;
-		head_in->head = add_list;
-		add_list->next = temp;
-		head_in->total_cnt = head_in->total_cnt + 1;
-	}
-}
-
-int	pull(t_head *head_in)
+void	push_stack(t_head *a, t_list *list)
 {
 	t_list	*temp;
-	t_list	*temp2;
-	int		pull_data;
 
-	pull_data = 0;
-	if (head_in->total_cnt == 0)
-		return (pull_data);
-	if (head_in->head->next)
-		temp = head_in->head->next;
+	if (a->head)
+		temp = a->head;
 	else
 		temp = 0;
-	pull_data = head_in->head->data;
-	temp2 = head_in->head;
-	head_in->head = temp;
-	free(temp2);
-	head_in->total_cnt = head_in->total_cnt - 1;
-	return (pull_data);
+	a->head = list;
+	a->head->next = temp;
+	a->total_cnt = a->total_cnt + 1;
+}
+
+t_list	*pull_stack(t_head *a)
+{
+	t_list	*temp;
+
+	if (a->total_cnt == 0)
+		return (0);
+	temp = a->head;
+	if (a->head->next)
+		a->head = a->head->next;
+	else
+		a->head = 0;
+	temp->next = 0;
+	a->total_cnt = a->total_cnt - 1;
+	return (temp);
 }
 
 int	lst_last_data(t_list *lst)

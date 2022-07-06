@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/05 15:21:52 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:35:45 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ typedef struct pivot_cnt_struct
 
 typedef struct print_buf_struct
 {
-	char	*print_buf;
-	int		print_cnt;
+	char					*print_buf;
+	int						total_cnt;
+	struct print_buf_struct	*next;
 }	t_buf;
 
 void	all_free(t_head *h);
@@ -57,19 +58,14 @@ int		atoi_input(const char *str);
 
 t_head	*new_head(void);
 t_head	*list_add(t_head *head, int data, int sort_check);
-void	push(t_head *head_in, int data);
-int		pull(t_head *head_in);
+void	push_stack(t_head *head_in, t_list *lst);
+t_list	*pull_stack(t_head *head_in);
 int		lst_last_data(t_list *lst);
 
-void	pa(t_head *a, t_head *b, t_buf *print_buf);
-void	sa(t_head *a, t_buf *print_buf);
-void	rra(t_head *a, int sort_check, t_buf *print_buf);
-void	ra(t_head *a, t_buf *print_buf);
-
-void	pb(t_head *a, t_head *b, t_buf *print_buf);
-void	sb(t_head *b, t_buf *print_buf);
-void	rrb(t_head *b, int sort_check, t_buf *print_buf);
-void	rb(t_head *b, t_buf *print_buf);
+void	push_from_to(t_head *b, t_head *a, t_buf *print_buf, char option);
+void	swap(t_head *a, t_buf *print_buf, char option);
+void	re_reverse(t_head *a, t_buf *print_buf, char option);
+void	reverse(t_head *a, t_buf *print_buf, char option);
 
 void	sort_a_case_1(t_head *a, t_head *b, t_buf *print_buf);
 void	sort_a_case_2(t_head *a, t_head *b, t_buf *print_buf);
@@ -117,9 +113,15 @@ t_pivot	get_pivot(t_head *a);
 void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, t_buf *buf);
 
 t_buf	*initial_print_buf(void);
-void	insert_print_buf(t_buf *buf, char *str);
+t_buf	*insert_print_buf(t_buf *buf, char *str);
+void	print_buf_out(t_buf *buf);
+void	free_print_buf(t_buf *buf);
+t_buf	*last_buf(t_buf *buf);
+
 void	print_all(char const *s);
 void	print_free(t_buf *buf);
+t_list	*last_lst(t_list *lst);
+t_list	*last_second_lst(t_list *lst);
 
 void	sort_a_optimize(t_head *a, t_buf *print_buf);
 

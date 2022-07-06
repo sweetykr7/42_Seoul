@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:15:16 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/04 20:25:15 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:42:30 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	sort_b(t_head *a, t_head *b, int size, t_buf *print_buf)
 	{
 		while (size > 0)
 		{			
-			pa(a, b, print_buf);
+			push_from_to(b, a, print_buf, 'a');
 			size--;
 		}
 		return ;
@@ -64,13 +64,13 @@ void	sort_b(t_head *a, t_head *b, int size, t_buf *print_buf)
 	else if (size == 2)
 	{
 		write_sort_complete_b(b, 2);
-		sb(b, print_buf);
-		pa(a, b, print_buf);
-		pa(a, b, print_buf);
+		swap(b, print_buf, 'b');
+		push_from_to(b, a, print_buf, 'a');
+		push_from_to(b, a, print_buf, 'a');
 	}
 	else
 	{
 		write_sort_complete_b(b, 1);
-		pa(a, b, print_buf);
+		push_from_to(b, a, print_buf, 'a');
 	}
 }

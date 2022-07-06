@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:40 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/05 14:11:28 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:48:08 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_pivot	get_pivot(t_head *a)
 	int		i;
 
 	size = a->head->cluster_cnt;
-	printf("test get_pivot1\n");
+	//printf("test get_pivot1\n");
 	sort = int_loc(size, &p);
-	printf("test get_pivot2\n");
+	//printf("test get_pivot2\n");
 	if (!sort)
 		return (p);
 	temp = a->head;
