@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:29:04 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 14:29:28 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:31:51 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	push_from_to(t_head *b, t_head *a, t_buf *print_buf, char option)
 {
 	t_list	*pull_list;
 
-	int		check_zero_data;
+	// int		check_zero_data;
 
-	//printf("start pa or pb!!!!!!!!!!!!\n");	
-	check_zero_data = 0;
-	check_zero_data = check_data_zero_one(a);
-	if (check_zero_data == -1)
-		printf("zero data in the before pa!!!!!!!!!!!\n");
-	check_zero_data = check_data_zero_one(b);
-	if (check_zero_data == -1)
-		printf("zero data in the before pb!!!!!!!!!!!\n");
+	// //printf("start pa or pb!!!!!!!!!!!!\n");	
+	// check_zero_data = 0;
+	// check_zero_data = check_data_zero_one(a);
+	// if (check_zero_data == -1)
+	// 	printf("zero data in the before pa!!!!!!!!!!!\n");
+	// check_zero_data = check_data_zero_one(b);
+	// if (check_zero_data == -1)
+	// 	printf("zero data in the before pb!!!!!!!!!!!\n");
 
 	// t_list	*temp;
 	// t_list	*temp2;
@@ -62,25 +62,25 @@ void	push_from_to(t_head *b, t_head *a, t_buf *print_buf, char option)
 
 
 	pull_list = pull_stack(b);
-	// check_zero_data = check_data_zero_one(a);
-	// if (check_zero_data == -1)
-	// 	printf("zero data in the after pa or pb's pull_stack!!!!!!!!!!!\n");
 	push_stack(a, pull_list);
 	// check_zero_data = check_data_zero_one(a);
 	// if (check_zero_data == -1)
+	// 	printf("zero data in the after pa or pb's pull_stack!!!!!!!!!!!\n");
+	// check_zero_data = check_data_zero_one(a);
+	// if (check_zero_data == -1)
 	// 	printf("zero data in the after pa or pb's push_stack!!!!!!!!!!!\n");
-	// if (option == 'a')
-	// 	insert_print_buf(print_buf, "pa\n");
-	// else
-	// 	insert_print_buf(print_buf, "pb\n");
-	(void)print_buf;
 	if (option == 'a')
-		printf("pa\n");
+		insert_print_buf(print_buf, "pa\n");
 	else
-		printf("pb\n");
-	check_zero_data = check_data_zero_one(a);
-	if (check_zero_data == -1)
-		printf("zero data in the after pa or pb!!!!!!!!!!!\n");
+		insert_print_buf(print_buf, "pb\n");
+	// (void)print_buf;
+	// if (option == 'a')
+	// 	printf("pa\n");
+	// else
+	// 	printf("pb\n");
+	// check_zero_data = check_data_zero_one(a);
+	// if (check_zero_data == -1)
+	// 	printf("zero data in the after pa or pb!!!!!!!!!!!\n");
 	//printf("pass pa!\n");
 }
 
@@ -89,12 +89,12 @@ void	swap(t_head *a, t_buf *print_buf, char option)
 	t_list	*pull_list1;
 	t_list	*pull_list2;
 	t_list	*temp;
-	int		check_zero_data;
+	// int		check_zero_data;
 
-	check_zero_data = 0;
-	check_zero_data = check_data_zero_one(a);
-	if (check_zero_data == -1)
-		printf("zero data in the before swap!!!!!!!!!!!\n");
+	// check_zero_data = 0;
+	// check_zero_data = check_data_zero_one(a);
+	// if (check_zero_data == -1)
+	// 	printf("zero data in the before swap!!!!!!!!!!!\n");
 
 	
 	pull_list1 = a->head;
@@ -106,18 +106,18 @@ void	swap(t_head *a, t_buf *print_buf, char option)
 	a->head = pull_list2;
 	a->head->next = pull_list1;
 	a->head->next->next = temp;
-	// if (option == 'a')
-	// 	insert_print_buf(print_buf, "sa\n");
-	// else
-	// 	insert_print_buf(print_buf, "sb\n");
-	(void)print_buf;
 	if (option == 'a')
-		printf("sa\n");
+		insert_print_buf(print_buf, "sa\n");
 	else
-		printf("sb\n");
-	check_zero_data = check_data_zero_one(a);
-	if (check_zero_data == -1)
-		printf("zero data in the after swap!!!!!!!!!!!\n");
+		insert_print_buf(print_buf, "sb\n");
+	// (void)print_buf;
+	// if (option == 'a')
+	// 	printf("sa\n");
+	// else
+	// 	printf("sb\n");
+	// check_zero_data = check_data_zero_one(a);
+	// if (check_zero_data == -1)
+	// 	printf("zero data in the after swap!!!!!!!!!!!\n");
 
 	//printf("pass sa!\n");
 }
@@ -127,15 +127,15 @@ void	re_reverse(t_head *a, t_buf *print_buf, char option)
 	t_list	*last_list;
 	t_list	*last_second_list;
 	t_list	*pre_first_lst;
-	int		check_zero_data;
+	// int		check_zero_data;
 
-	check_zero_data = 0;
-	check_zero_data = check_data_zero_one(a);
-	if (check_zero_data == -1)
-		printf("zero data in the before re_reverse!!!!!!!!!!!\n");
+	// check_zero_data = 0;
+	// check_zero_data = check_data_zero_one(a);
+	// if (check_zero_data == -1)
+	// 	printf("zero data in the before re_reverse!!!!!!!!!!!\n");
 	if (a->total_cnt == 1)
 		return ;
-	printf("rr total cnt : %d\n", a->total_cnt);
+	//printf("rr total cnt : %d\n", a->total_cnt);
 	if (a->total_cnt == 2)
 	{
 		if (option == 'a')
@@ -149,18 +149,18 @@ void	re_reverse(t_head *a, t_buf *print_buf, char option)
 	last_second_list->next = 0;
 	a->head = last_list;
 	a->head->next = pre_first_lst;
-	// if (option == 'a')
-	// 	insert_print_buf(print_buf, "rra\n");
-	// else
-	// 	insert_print_buf(print_buf, "rrb\n");
-	(void)print_buf;
 	if (option == 'a')
-		printf("rra\n");
+		insert_print_buf(print_buf, "rra\n");
 	else
-		printf("rrb\n");
-	check_zero_data = check_data_zero_one(a);
-	if (check_zero_data == -1)
-		printf("zero data in the after re_reverse!!!!!!!!!!!\n");
+		insert_print_buf(print_buf, "rrb\n");
+	// (void)print_buf;
+	// if (option == 'a')
+	// 	printf("rra\n");
+	// else
+	// 	printf("rrb\n");
+	// check_zero_data = check_data_zero_one(a);
+	// if (check_zero_data == -1)
+	// 	printf("zero data in the after re_reverse!!!!!!!!!!!\n");
 	//printf("pass rr%c!\n", option);
 }
 
@@ -169,12 +169,12 @@ void	reverse(t_head *a, t_buf *print_buf, char option)
 	t_list	*pre_first_lst;
 	t_list	*temp;
 
-	int		check_zero_data;
+	// int		check_zero_data;
 
-	check_zero_data = 0;
-	check_zero_data = check_data_zero_one(a);
-	if (check_zero_data == -1)
-		printf("zero data in the before reverse!!!!!!!!!!!\n");
+	// check_zero_data = 0;
+	// check_zero_data = check_data_zero_one(a);
+	// if (check_zero_data == -1)
+	// 	printf("zero data in the before reverse!!!!!!!!!!!\n");
 
 	if (a->total_cnt == 1)
 		return ;
@@ -191,17 +191,17 @@ void	reverse(t_head *a, t_buf *print_buf, char option)
 		}
 		temp = temp->next;
 	}
-	// if (option == 'a')
-	// 	insert_print_buf(print_buf, "ra\n");
-	// else
-	// 	insert_print_buf(print_buf, "rb\n");
-	(void)print_buf;
 	if (option == 'a')
-		printf("ra\n");
+		insert_print_buf(print_buf, "ra\n");
 	else
-		printf("rb\n");
+		insert_print_buf(print_buf, "rb\n");
+	// (void)print_buf;
+	// if (option == 'a')
+	// 	printf("ra\n");
+	// else
+	// 	printf("rb\n");
 	//printf("pass ra!\n");
-	check_zero_data = check_data_zero_one(a);
-	if (check_zero_data == -1)
-		printf("zero data in the after reverse!!!!!!!!!!!\n");
+	// check_zero_data = check_data_zero_one(a);
+	// if (check_zero_data == -1)
+	// 	printf("zero data in the after reverse!!!!!!!!!!!\n");
 }

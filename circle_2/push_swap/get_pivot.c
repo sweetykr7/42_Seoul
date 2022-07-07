@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_pivot.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joey <joey@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:40 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 16:51:58 by joey             ###   ########.fr       */
+/*   Updated: 2022/07/07 17:31:39 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,34 @@ t_pivot	*get_pivot(t_head *a, t_pivot *p)
 	int		size;
 	int		i;
 
-
+	
 
 	size = a->head->cluster_cnt;
 	//printf("test get_pivot1\n");
+	//printf("size check : %d\n", size);
+	
 	sort = int_loc(size);
+
+	// int	check_data_zero_res;
+
+	// check_data_zero_res = 0;
+
+	// check_data_zero_res = check_data_zero_one(a);
+	// if (check_data_zero_res == -1)
+	// {
+	// 	printf("check_data zero in a!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+	// }
+
+	
+
 	//printf("test get_pivot2\n");
 	if (!sort)
 		return (0);
 	temp = a->head;
 	i = 0;
+
+	
+
 	while (i < size && temp)
 	{
 		sort[i] = temp->data;
@@ -39,5 +57,7 @@ t_pivot	*get_pivot(t_head *a, t_pivot *p)
 	p->pivot1 = sort[(size / 3)];
 	p->pivot2 = sort[((size * 2) / 3)];
 	free(sort);
+
+	
 	return (p);
 }

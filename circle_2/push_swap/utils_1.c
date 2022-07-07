@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 12:49:36 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 19:54:32 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,14 @@ int	*int_loc(int size)
 	int	*p;
 	int	i;
 
-	// printf("int_loc pivot1 check : %d\n", pivot->pivot1);
-	// printf("int_loc pivot2 check : %d\n", pivot->pivot2);
-	// printf("int_loc size check : %d\n", size);
-	// printf("int_loc test check============\n");
 	p = (int *)malloc(sizeof(int) * size);
 	if (!p)
 		return (0);
-	i = size;
-	// printf("int_loc pass test============\n");
-	while (i > 0)
+	i = 0;
+	while (i < size)
 	{
 		p[i] = 0;
-		i--;
+		i++;
 	}
 	return (p);
 }

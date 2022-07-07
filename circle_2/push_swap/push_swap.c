@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:30:45 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 13:30:32 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:33:45 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,26 +205,26 @@ int main(int ac, char **av)
 	// write(1,"a",1);
 	// write(1,"\n",1);
 
-	// buf = algorithm_optimize(buf);
+	buf = algorithm_optimize(buf);
 	print_buf_out(buf);
 
 
 
 
-	t_list	*temp;
-	int		i;
-	temp = a->head;
-	i = 1;
-	while (i <= a->total_cnt)
-	{
-		printf("check list [%d] : %d \n",i,temp->data);
-		i++;
-		if (temp->next)
-			temp = temp->next;
-		else
-			break;
-	}
-	printf("complete\n");
+	// t_list	*temp;
+	// int		i;
+	// temp = a->head;
+	// i = 1;
+	// while (i <= a->total_cnt)
+	// {
+	// 	printf("check list [%d] : %d \n",i,temp->data);
+	// 	i++;
+	// 	if (temp->next)
+	// 		temp = temp->next;
+	// 	else
+	// 		break;
+	// }
+	// printf("complete\n");
 	
 	all_free(a);
 	all_free(b);
