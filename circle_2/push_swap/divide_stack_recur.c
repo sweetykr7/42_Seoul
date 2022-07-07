@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   divide_stack_recur.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: joey <joey@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:48:52 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 13:38:29 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 16:53:38 by joey             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,34 @@ void	divide_stack_a_check(t_head *a, t_head *b, t_pivot *pivot, t_buf *buf)
 {
 	if (1 <= a->head->cluster_cnt && a->head->cluster_cnt <= 3)
 	{
-		//printf("pass test7\n");
+		printf("pass test7\n");
 		sort_a(a, b, a->head->cluster_cnt, buf);
-		//printf("pass test8\n");
+		printf("pass test8\n");
 	}
 	else
 	{
-		//printf("cluster check before test9 : %d\n",a->head->cluster_cnt);
-		//printf("pass test9\n");
+		printf("cluster check before test9 : %d\n",a->head->cluster_cnt);
+		printf("pass test9\n");
+		
 		pivot = get_pivot(a, pivot);
-		//printf("pass test10\n");
+
+		
+		int	check_data_zero_res;
+
+		check_data_zero_res = 0;
+
+		check_data_zero_res = check_data_zero_one(a);
+		if (check_data_zero_res == -1)
+		{
+			printf("check_data zero in a!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+		}
+
+				
+		
+		printf("pass test10\n");
 		if (pivot->pivot1 != 0 || pivot->pivot2 != 0)
 			divide_stack_a(a, b, pivot, buf);
-		//printf("pass test11\n");
+		printf("pass test11\n");
 	}
 	free(pivot);
 }
@@ -148,7 +163,19 @@ void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, t_buf *buf)
 	check_sort_a_res = 0;
 	check_asc_sort_a(a, a->total_cnt);
 	check_sort_a_res = check_sort_a(a);
-	//printf("pass check_asc_sort_a\n");
+	printf("pass check_asc_sort_a\n");
+
+
+	check_data_zero_res = check_data_zero(a, b);
+	if (check_data_zero_res == -1)
+	{
+		printf("check_data zero in a!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+	}
+	else if (check_data_zero_res == -2)
+	{
+		printf("check_data zero in b!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+	}	
+
 	if (a->total_cnt == total_cnt && check_sort_a_res == 1)
 	{
 		free(pivot);
@@ -160,32 +187,41 @@ void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, t_buf *buf)
 		{
 			if (lst_last_data(a->head) < b->head->data)
 			{
-				//printf("pass check_sort_a_res == 2 and lst_last_data(a->head) < b->head->data\n");
+				printf("pass check_sort_a_res == 2 and lst_last_data(a->head) < b->head->data\n");
 				divide_stack_b_check(a, b, pivot, buf);
 				divide_stack_recur(a, b, total_cnt, buf);
 				return ;
 			}
 		}
-		//printf("pass check_sort_a_res == 2 before while\n");
+		printf("pass check_sort_a_res == 2 before while\n");
 		while (a->head->cluster_cnt == 0 || a->head->cluster_cnt == -1)
 		{
-			//printf("in the while\n");
+			printf("in the while\n");
 			re_reverse(a, buf, 'a');
 		}
 		check_sort_a_res = check_sort_a(a);
-		//printf("after while + check sort_a");
+		printf("after while + check sort_a");
 	}
 	if (check_sort_a_res == 0)
 	{
-		//printf("check_sort_a_res == 0 before divide_stack_a_check\n");
+		printf("check_sort_a_res == 0 before divide_stack_a_check\n");
+		check_data_zero_res = check_data_zero(a, b);
+		if (check_data_zero_res == -1)
+		{
+			printf("check_data zero in a!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+		}
+		else if (check_data_zero_res == -2)
+		{
+			printf("check_data zero in b!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+		}	
 		divide_stack_a_check(a, b, pivot, buf);
-		//printf("pass divide_stack_a_check\n");
+		printf("pass divide_stack_a_check\n");
 	}
 	else
 	{
-		//printf("check_sort_a_res == 0 before divide_stack_b_check\n");
+		printf("check_sort_a_res == 0 before divide_stack_b_check\n");
 		divide_stack_b_check(a, b, pivot, buf);
-		//printf("pass divide_stack_b_check\n");
+		printf("pass divide_stack_b_check\n");
 	}
 	divide_stack_recur(a, b, total_cnt, buf);
 }

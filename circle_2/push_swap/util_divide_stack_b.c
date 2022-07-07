@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_divide_stack_b.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: joey <joey@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:31:46 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 12:54:41 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 16:30:54 by joey             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ void	pivot_cnt_set_b(t_head *a, t_head *b, t_pc *pivot_cnt, t_buf *buf)
 	int		i;
 	t_list	*temp;
 
+		int		check_zero_data;
+
+	check_zero_data = 0;
+	check_zero_data = check_data_zero_one(a);
+	if (check_zero_data == -1)
+		printf("zero data a, before pivot_cnt_set_b!!!!!!!!!!!\n");
+	check_zero_data = check_data_zero_one(b);
+	if (check_zero_data == -1)
+		printf("zero data b, before pivot_cnt_set_b!!!!!!!!!!!\n");
+
 	if (pivot_cnt->pivot3_cnt > 0)
 		a->head->cluster_cnt = pivot_cnt->pivot3_cnt;
 	if (pivot_cnt->pivot1_cnt > 0)
@@ -57,6 +67,14 @@ void	pivot_cnt_set_b(t_head *a, t_head *b, t_pc *pivot_cnt, t_buf *buf)
 		temp->cluster_cnt = pivot_cnt->pivot2_cnt;
 	}
 	free(pivot_cnt);
+
+	check_zero_data = 0;
+	check_zero_data = check_data_zero_one(a);
+	if (check_zero_data == -1)
+		printf("zero data a, after pivot_cnt_set_b!!!!!!!!!!!\n");
+	check_zero_data = check_data_zero_one(b);
+	if (check_zero_data == -1)
+		printf("zero data b, after pivot_cnt_set_b!!!!!!!!!!!\n");
 }
 
 void	divide_stack_b(t_head *a, t_head *b, t_pivot *pivot, t_buf *buf)

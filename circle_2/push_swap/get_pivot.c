@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_pivot.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: joey <joey@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:40 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 12:59:39 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 16:51:58 by joey             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_pivot	*get_pivot(t_head *a, t_pivot *p)
 	int		*sort;
 	int		size;
 	int		i;
+
+
 
 	size = a->head->cluster_cnt;
 	//printf("test get_pivot1\n");
