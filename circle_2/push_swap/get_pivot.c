@@ -6,15 +6,14 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:40 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 15:48:08 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:59:39 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_pivot	get_pivot(t_head *a)
+t_pivot	*get_pivot(t_head *a, t_pivot *p)
 {
-	t_pivot	p;
 	t_list	*temp;
 	int		*sort;
 	int		size;
@@ -22,10 +21,10 @@ t_pivot	get_pivot(t_head *a)
 
 	size = a->head->cluster_cnt;
 	//printf("test get_pivot1\n");
-	sort = int_loc(size, &p);
+	sort = int_loc(size);
 	//printf("test get_pivot2\n");
 	if (!sort)
-		return (p);
+		return (0);
 	temp = a->head;
 	i = 0;
 	while (i < size && temp)
@@ -35,8 +34,8 @@ t_pivot	get_pivot(t_head *a)
 		i++;
 	}
 	sort = sort_arr(size, sort);
-	p.pivot1 = sort[(size / 3)];
-	p.pivot2 = sort[((size * 2) / 3)];
+	p->pivot1 = sort[(size / 3)];
+	p->pivot2 = sort[((size * 2) / 3)];
 	free(sort);
 	return (p);
 }

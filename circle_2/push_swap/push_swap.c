@@ -6,29 +6,30 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:30:45 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 17:08:48 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:30:32 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "util_list.c"
-#include "util_stack.c"
-#include "utils_1.c"
-#include "utils_2.c"
-#include "util_sort_a.c"
-#include "util_sort_a_case.c"
-#include "util_sort_b.c"
-#include "util_sort_b_case.c"
-#include "util_print_buf.c"
-#include "util_divide_stack_a.c"
-#include "util_divide_stack_b.c"
-#include "util_sort_check.c"
-#include "get_pivot.c"
-#include "divide_stack_recur.c"
-#include "util_input1.c"
-#include "util_input2.c"
-#include "util_sort_a_optimize_case.c"
-#include "util_sort_a_optimize.c"
+// #include "util_list.c"
+// #include "util_stack_1.c"
+// #include "utils_1.c"
+// #include "utils_2.c"
+// #include "util_sort_a.c"
+// #include "util_sort_a_case.c"
+// #include "util_sort_b.c"
+// #include "util_sort_b_case.c"
+// #include "util_print_buf.c"
+// #include "util_divide_stack_a.c"
+// #include "util_divide_stack_b.c"
+// #include "util_sort_check.c"
+// #include "get_pivot.c"
+// #include "divide_stack_recur.c"
+// #include "util_input1.c"
+// #include "util_input2.c"
+// #include "util_sort_a_optimize_case.c"
+// #include "util_sort_a_optimize.c"
+// #include "algorithm_optimizing.c"
 
 //#include <stdio.h>
 
@@ -170,9 +171,7 @@ int main(int ac, char **av)
 {
 	t_head	*a;
 	t_head	*b;
-	//t_list	*temp;
 	t_buf	*buf;
-	//int		i;
 
 	a = new_head();
 	b = new_head();
@@ -191,29 +190,41 @@ int main(int ac, char **av)
 	//av[1] = "25 4 1 34 20 15 23 32 18 33 30 36 22 6 27 5 10 8 40 21 29 9 37 24 12 11 7 14 35 19 3 26 16 38 39 13 17 31 28 2";
 	//av[1] = "64 44 21 23 2 3 19 4 40 59 49 98 41 62 100 54 5 27 6 80 88 94 60 51 33 96 76 20 7 74 85 11 71 67 24 79 90 15 35 38 48 45 72 17 25 43 95 36 31 75 61 70 29 91 9 69 84 68 26 18 52 53 14 1 97 28 66 77 56 39 37 12 13 16 78 87 22 86 10 83 73 81 8 58 30 34 50 99 92 63 89 42 93 32 82 55 57 65 47 46 -100";
 	//av[1] = "5 4 3 2 1";
+	//av[1] = "43 16 32 35 24 20 23 10 41 9 36 5 8 50 47 21 4 30 18 13 25 34 17 40 11 7 38 29 26 2 22 39 3 49 28 15 45 37 33 48 12 44 31 6 46 14 27 1 19 42";
+	//av[1] = "13 4 1 15 11 2 7 10 6 8 14 9 5 12 3";
+	//av[1] = "5 13 6 9 4 10 12 11 1 15 7 8 3 14 2";
+	//av[1] = "10 5 1 2 11 9 15 8 3 14 6 13 4 12 7";
 	//ac = 2;
 	get_number(av, ac, a);
 	a->head->cluster_cnt = a->total_cnt;
 	divide_stack_recur(a, b, a->total_cnt, buf);
 	//printf("print buf test : %s\n", buf->print_buf);
-	// 아랫부분 테스트용
-	//print_all(buf->print_buf);
+	//아랫부분 테스트용
+	// print_all(buf->print_buf);
 	// write(1,"s",1);
 	// write(1,"a",1);
 	// write(1,"\n",1);
+
+	// buf = algorithm_optimize(buf);
 	print_buf_out(buf);
-	// temp = a->head;
-	// i = 1;
-	// while (i <= a->total_cnt)
-	// {
-	// 	printf("check list [%d] : %d \n",i,temp->data);
-	// 	i++;
-	// 	if (temp->next)
-	// 		temp = temp->next;
-	// 	else
-	// 		break;
-	// }
-	// printf("complete\n");
+
+
+
+
+	t_list	*temp;
+	int		i;
+	temp = a->head;
+	i = 1;
+	while (i <= a->total_cnt)
+	{
+		printf("check list [%d] : %d \n",i,temp->data);
+		i++;
+		if (temp->next)
+			temp = temp->next;
+		else
+			break;
+	}
+	printf("complete\n");
 	
 	all_free(a);
 	all_free(b);

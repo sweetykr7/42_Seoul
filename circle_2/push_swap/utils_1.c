@@ -6,19 +6,17 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 15:47:57 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:49:36 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*int_loc(int size, t_pivot *pivot)
+int	*int_loc(int size)
 {
 	int	*p;
 	int	i;
 
-	pivot->pivot1 = 0;
-	pivot->pivot2 = 0;
 	// printf("int_loc pivot1 check : %d\n", pivot->pivot1);
 	// printf("int_loc pivot2 check : %d\n", pivot->pivot2);
 	// printf("int_loc size check : %d\n", size);

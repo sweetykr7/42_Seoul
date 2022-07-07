@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:39:29 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 15:30:58 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:45:35 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,27 @@ t_head	*list_add(t_head *head, int data, int sort_check)
 
 void	push_stack(t_head *a, t_list *list)
 {
-	t_list	*temp;
+	// t_list	*temp;
+
+	// if (a->head)
+	// 	temp = a->head;
+	// else
+	// 	temp = 0;
+	// a->head = list;
+	// a->head->next = temp;
+	// a->total_cnt = a->total_cnt + 1;
+
 
 	if (a->head)
-		temp = a->head;
+	{
+		list->next = a->head;
+		a->head = list;
+	}
 	else
-		temp = 0;
-	a->head = list;
-	a->head->next = temp;
-	a->total_cnt = a->total_cnt + 1;
+		a->head = list;
+	a->total_cnt++;
+	// a->head = list;
+	// a->head->next = temp;
 }
 
 t_list	*pull_stack(t_head *a)
@@ -69,15 +81,41 @@ t_list	*pull_stack(t_head *a)
 	t_list	*temp;
 
 	if (a->total_cnt == 0)
-		return (0);
-	temp = a->head;
-	if (a->head->next)
-		a->head = a->head->next;
+		temp = NULL;
+	else if (a->total_cnt == 1)
+	{
+		temp = a->head;
+		a->head = NULL;
+	}
 	else
-		a->head = 0;
-	temp->next = 0;
-	a->total_cnt = a->total_cnt - 1;
+	{
+		temp = a->head;
+		a->head = temp->next;
+		temp->next = NULL;
+	}
+	a->total_cnt--;
 	return (temp);
+	
+	// if (a->head->next)
+	// 	a->head = a->head->next;
+	// else
+	// 	a->head = 0;
+	// temp->next = 0;
+	// a->total_cnt = a->total_cnt - 1;
+	// return (temp);
+
+	// 	t_list	*temp;
+
+	// if (a->total_cnt == 0)
+	// 	return (0);
+	// temp = a->head;
+	// if (a->head->next)
+	// 	a->head = a->head->next;
+	// else
+	// 	a->head = 0;
+	// temp->next = 0;
+	// a->total_cnt = a->total_cnt - 1;
+	// return (temp);
 }
 
 int	lst_last_data(t_list *lst)

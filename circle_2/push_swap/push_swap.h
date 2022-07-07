@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 17:35:45 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:39:51 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	sort_b_case_5(t_head *a, t_head *b, t_buf *print_buf);
 void	sort_a(t_head *a, t_head *b, int size, t_buf *print_buf);
 void	sort_b(t_head *a, t_head *b, int size, t_buf *print_buf);
 void	write_sort_complete_a(t_head *a, int size);
-int		*int_loc(int size, t_pivot *pivot);
+int		*int_loc(int size);
 int		check_asc_sort_a(t_head *a, int size);
 
 void	sort_a_optimize(t_head *a, t_buf *print_buf);
@@ -97,19 +97,19 @@ int		strsize(char *s);
 void	divide_stack_a_pivot1(t_head *a, t_head *b, int *p_cnt1, t_buf *buf);
 void	divide_stack_a_pivot2(t_head *a, t_head *b, int *p_cnt2, t_buf *buf);
 void	divide_stack_a_pivot3(t_head *a, int *p_cnt3, t_buf *buf);
-void	divide_stack_a(t_head *a, t_head *b, t_pivot pivot, t_buf *buf);
+void	divide_stack_a(t_head *a, t_head *b, t_pivot *pivot, t_buf *buf);
 
 void	divide_stack_b_pivot1(t_head *b, int *p_cnt1, t_buf *buf);
 void	divide_stack_b_pivot2(t_head *a, t_head *b, int *p_cnt2, t_buf *buf);
 void	divide_stack_b_pivot3(t_head *a, t_head *b, int *p_cnt3, t_buf *buf);
-void	divide_stack_b(t_head *a, t_head *b, t_pivot pivot, t_buf *buf);
+void	divide_stack_b(t_head *a, t_head *b, t_pivot *pivot, t_buf *buf);
 
 int		check_desc_sort_b(t_head *b, int size);
 int		check_asc_sort_a(t_head *a, int size);
 int		*sort_arr(int size, int *sort);
 int		check_sort_a(t_head *a);
 
-t_pivot	get_pivot(t_head *a);
+t_pivot	*get_pivot(t_head *a, t_pivot *p);
 void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, t_buf *buf);
 
 t_buf	*initial_print_buf(void);
@@ -122,7 +122,14 @@ void	print_all(char const *s);
 void	print_free(t_buf *buf);
 t_list	*last_lst(t_list *lst);
 t_list	*last_second_lst(t_list *lst);
+char	*insert_words(char *str);
 
 void	sort_a_optimize(t_head *a, t_buf *print_buf);
+
+t_buf	*algorithm_optimize(t_buf *buf);
+
+//test용도
+int		check_data_zero_one(t_head *a);
+
 
 #endif

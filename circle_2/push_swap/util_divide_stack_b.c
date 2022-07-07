@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:31:46 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 15:48:35 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:54:41 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	pivot_cnt_set_b(t_head *a, t_head *b, t_pc *pivot_cnt, t_buf *buf)
 	free(pivot_cnt);
 }
 
-void	divide_stack_b(t_head *a, t_head *b, t_pivot pivot, t_buf *buf)
+void	divide_stack_b(t_head *a, t_head *b, t_pivot *pivot, t_buf *buf)
 {
 	int		i;
 	t_pc	*pivot_cnt;
@@ -69,9 +69,9 @@ void	divide_stack_b(t_head *a, t_head *b, t_pivot pivot, t_buf *buf)
 	i = b->head->cluster_cnt + 1;
 	while (--i > 0)
 	{
-		if (b->head->data <= pivot.pivot1)
+		if (b->head->data <= pivot->pivot1)
 			divide_stack_b_pivot1(b, &pivot_cnt->pivot1_cnt, buf);
-		else if (b->head->data <= pivot.pivot2)
+		else if (b->head->data <= pivot->pivot2)
 			divide_stack_b_pivot2(a, b, &pivot_cnt->pivot2_cnt, buf);
 		else
 			divide_stack_b_pivot3(a, b, &pivot_cnt->pivot3_cnt, buf);

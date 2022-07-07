@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 16:55:49 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/07 09:49:53 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,24 @@ t_list	*last_second_lst(t_list *lst)
 	while (lst->next->next)
 		lst = lst->next;
 	return (lst);
+}
+
+char	*insert_words(char *str)
+{
+	char	*res;
+	int		strlen;
+	int		i;
+
+	strlen = strsize(str);
+	res = (char *)malloc(sizeof(strlen) + 1);
+	if (!res)
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		res[i] = str[i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
 }
