@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/08 15:44:00 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/08 16:44:53 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h> //지워야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 typedef struct linked_list
 {
