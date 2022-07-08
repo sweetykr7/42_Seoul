@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:38:52 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/05 12:47:53 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:34:36 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,28 @@ int	*sort_arr(int size, int *sort)
 	return (sort);
 }
 
+void	check_asc_sort_a_back_area(t_list *temp, int size)
+{
+	int		i;
+	int		pre_flag;
+
+	pre_flag = 0;
+	i = 0;
+	while (i < size && temp)
+	{
+		if (pre_flag == -1 && temp->cluster_cnt > 0)
+			break ;
+		temp->cluster_cnt = -1;
+		pre_flag = temp->cluster_cnt;
+		temp = temp->next;
+		i++;
+	}
+}
+
 int	check_asc_sort_a(t_head *a, int size)
 {
 	t_list	*temp;
 	int		i;
-	int		pre_flag;
-	//int		align_point;
 
 	temp = a->head;
 	i = 0;
@@ -58,24 +74,11 @@ int	check_asc_sort_a(t_head *a, int size)
 		if (temp->next)
 			if (temp->data > temp->next->data)
 				return (0);
-		// if (temp->cluster_cnt > 0)
-		// 	break ;
 		temp = temp->next;
 		i++;
 	}
-	//align_point = i;
 	temp = a->head;
-	i = 0;
-	pre_flag = 0;
-	while (i < size && temp)
-	{
-		if (pre_flag == -1 && temp->cluster_cnt > 0)
-			break ;
-		temp->cluster_cnt = -1;
-		pre_flag = temp->cluster_cnt;
-		temp = temp->next;
-		i++;
-	}
+	check_asc_sort_a_back_area(temp, size);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 10:55:28 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/04 10:56:47 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/08 15:51:22 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,35 @@ int	is_space(char c)
 	return (0);
 }
 
-int	atoi_input(const char *str)
+int	atoi_input_calculator(char *str, int *error, int m)
+{
+	unsigned int	n;
+
+	n = 0;
+	while (*str)
+	{	
+		if (*str < '0' || *str > '9')
+		{
+			*error = 1;
+			return (0);
+		}
+		if (n > (2147483648 - (unsigned int)(*str - '0')) / 10 && m == -1)
+		{
+			*error = 1;
+			return (0);
+		}
+		else if (n > (2147483647 - (unsigned int)(*str - '0')) / 10 && m == 1)
+		{
+			*error = 1;
+			return (0);
+		}
+		n = n * 10 + (*str - '0');
+		str++;
+	}	
+	return (n * m);
+}
+
+int	atoi_input(char *str, int *error)
 {
 	int				m;
 	unsigned int	n;
@@ -35,14 +63,10 @@ int	atoi_input(const char *str)
 		str++;
 	}
 	n = 0;
-	while (*str && '0' <= *str && *str <= '9')
+	if (*str < '0' || *str > '9')
 	{
-		if (n > (2147483648 - (unsigned int)(*str - '0')) / 10 && m == -1)
-			return (0);
-		else if (n > (2147483647 - (unsigned int)(*str - '0')) / 10 && m == 1)
-			return (-1);
-		n = n * 10 + (*str - '0');
-		str++;
+		*error = 1;
+		return (0);
 	}
-	return (n * m);
+	return (atoi_input_calculator(str, error, m));
 }

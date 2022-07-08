@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 09:49:53 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:26:48 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ void	print_all(char const *s)
 		s++;
 	}
 }
-
-// void	print_free(t_buf *buf)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	free(buf->print_buf);
-// 	free(buf);
-// }
 
 t_list	*last_lst(t_list *lst)
 {

@@ -6,42 +6,13 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:05:32 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 17:20:18 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/08 14:27:52 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	insert_print_buf(t_buf *buf, char *str)
-// {
-// 	(void)buf;
-// 	(void)str;
-// 	// int		i;
-// 	// int		j;
-// 	// char	*rv;
-// 	// char	*temp;
-
-// 	// if (!buf->print_buf || !str)
-// 	// 	return ;
-// 	// temp = buf->print_buf;
-// 	// rv = (char *)malloc(sizeof(char) * (strsize(buf->print_buf) \
-// 	// 		+ strsize(str) + 2));
-// 	// if (!rv)
-// 	// 	return ;
-// 	// i = -1;
-// 	// while (++i < strsize(buf->print_buf))
-// 	// 	rv[i] = buf->print_buf[i];
-// 	// j = -1;
-// 	// while (++j < strsize(str))
-// 	// 	rv[i + j] = str[j];
-// 	// rv[i + j] = '\n';
-// 	// rv[i + j + 1] = '\0';
-// 	// buf->print_buf = rv;
-// 	// buf->print_cnt = buf->print_cnt + 1;
-// 	// free(temp);
-// }
-
-void	free_print_buf(t_buf *buf)
+void	print_buf_free(t_buf *buf)
 {
 	t_buf	*temp;
 
@@ -62,33 +33,36 @@ void	print_buf_out(t_buf *buf)
 {
 	t_buf	*temp;
 
-	temp = buf;	
+	temp = buf;
 	while (temp && temp->print_buf)
 	{
 		print_all(temp->print_buf);
 		if (temp->next)
 			temp = temp->next;
 		else
-			break;
+			break ;
 	}
 }
 
-t_buf	*last_buf(t_buf *buf)
+void	insert_print_buf_back_area(t_buf *temp, char *res)
 {
-	t_buf	*temp;
+	t_buf	*res_buf;
 
-	temp = 0;
-	while (buf->next)
-		buf = buf->next;
-	temp = buf;
-	return (temp);
+	if (!temp->print_buf)
+		temp->print_buf = res;
+	else
+	{
+		res_buf = initial_print_buf();
+		temp->next = res_buf;
+		temp->next->print_buf = res;
+		temp->next->next = 0;
+	}
 }
 
 t_buf	*insert_print_buf(t_buf *buf, char *str)
 {
 	char	*res;
 	t_buf	*temp;
-	t_buf	*res_buf;
 	int		strlen;
 	int		i;
 
@@ -101,22 +75,11 @@ t_buf	*insert_print_buf(t_buf *buf, char *str)
 		temp->print_buf = 0;
 		return (buf);
 	}
-	i = 0;
-	while (i < strlen)
-	{
+	i = -1;
+	while (++i < strlen)
 		res[i] = str[i];
-		i++;
-	}
 	res[i] = '\0';
-	if (!temp->print_buf)
-		temp->print_buf = res;
-	else
-	{
-		res_buf = initial_print_buf();
-		temp->next = res_buf;
-		temp->next->print_buf = res;
-		temp->next->next = 0;
-	}
+	insert_print_buf_back_area(temp, res);
 	buf->total_cnt = buf->total_cnt + 1;
 	return (buf);
 }

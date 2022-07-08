@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 19:54:32 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/08 14:26:44 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	strsize(char *s)
 	return (size);
 }
 
-void	all_free(t_head *h)
+void	head_free(t_head *h)
 {
 	t_list	*temp;
 

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:28:13 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/07 13:10:39 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/08 10:18:59 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ void	pivot_cnt_set_a(t_head *a, t_head *b, t_pc *pivot_cnt, t_buf *buf)
 	if (pivot_cnt->pivot1_cnt > 0)
 		b->head->cluster_cnt = pivot_cnt->pivot1_cnt;
 	i = pivot_cnt->pivot2_cnt + 1;
-	//printf("pass here!!!!!!!\n");
-	while (--i > 0  && pivot_cnt->pivot2_cnt != b->total_cnt) //여기바꿈 조심
+	while (--i > 0 && pivot_cnt->pivot2_cnt != b->total_cnt)
 		re_reverse(b, buf, 'b');
 	if (pivot_cnt->pivot3_cnt > 0)
 	{
 		i = pivot_cnt->pivot3_cnt + 1;
-		while (--i > 0 && pivot_cnt->pivot3_cnt != a->total_cnt) //여기바꿈 조심
+		while (--i > 0 && pivot_cnt->pivot3_cnt != a->total_cnt)
 			re_reverse(a, buf, 'a');
 	}
 	if (pivot_cnt->pivot2_cnt > 0)
@@ -67,20 +66,11 @@ void	divide_stack_a(t_head *a, t_head *b, t_pivot *pivot, t_buf *buf)
 	while (--i > 0)
 	{
 		if (a->head->data <= pivot->pivot1)
-		{
 			divide_stack_a_pivot1(a, b, &pivot_cnt->pivot1_cnt, buf);
-			//printf("divide_stack_a check 1\n");
-		}
 		else if (a->head->data <= pivot->pivot2)
-		{
 			divide_stack_a_pivot2(a, b, &pivot_cnt->pivot2_cnt, buf);
-			//printf("divide_stack_a check 2\n");
-		}
 		else
-		{
 			divide_stack_a_pivot3(a, &pivot_cnt->pivot3_cnt, buf);
-			//printf("divide_stack_a check 3\n");
-		}
 	}
 	pivot_cnt_set_a(a, b, pivot_cnt, buf);
 	free(pivot_cnt);

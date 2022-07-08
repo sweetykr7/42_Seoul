@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 17:37:45 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/03/17 17:58:24 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/07/08 12:26:53 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/07/08 15:25:49 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_buf	*last_buf(t_buf *buf)
 {
-	t_list	*res;
-	t_list	*new_node;
+	t_buf	*temp;
 
-	res = NULL;
+	temp = 0;
+	while (buf->next)
+		buf = buf->next;
+	temp = buf;
+	return (temp);
+}
+
+int	find_word_in_list(t_list *lst, int data, int *error)
+{
 	while (lst)
 	{
-		new_node = ft_lstnew(f(lst->content));
-		if (!new_node)
+		if (lst->data == data)
 		{
-			ft_lstclear(&res, del);
-			return ((void *)(0));
+			*error = 1;
+			return (0);
 		}
-		ft_lstadd_back(&res, new_node);
 		lst = lst->next;
 	}
-	new_node = NULL;
-	return (res);
+	return (1);
+}
+
+int	free_char_pointer_and_return_zero(char **a)
+{
+	free(a);
+	return (0);
 }

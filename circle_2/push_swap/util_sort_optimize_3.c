@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_sort_a_optimize.c                             :+:      :+:    :+:   */
+/*   util_sort_optimize_3.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:16:08 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/04 17:00:14 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/08 10:09:34 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_a_optimize(t_head *a, t_buf *print_buf)
+void	sort_optimize_3(t_head *a, t_buf *print_buf)
 {
 	int	para1;
 	int	para2;

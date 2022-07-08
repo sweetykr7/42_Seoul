@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:15:16 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 13:41:11 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/08 10:56:33 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	sort_a(t_head *a, t_head *b, int size, t_buf *print_buf)
 	if (size == 3)
 	{
 		if (a->total_cnt <= 3 && b->total_cnt == 0)
-			sort_a_optimize(a, print_buf);
+			sort_optimize_3(a, print_buf);
 		else
 			sort_a_cnt_3(a, b, print_buf);
 	}
