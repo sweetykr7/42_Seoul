@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_stack_2.c                                     :+:      :+:    :+:   */
+/*   checker_stack_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 09:27:31 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/08 15:44:49 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/07/09 14:18:13 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/07/09 14:35:47 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	re_reverse_both(t_head *a, t_head *b, t_buf *print_buf)
+int	re_reverse_both_checker(t_head *a, t_head *b)
 {
-	re_reverse(a, print_buf, 'c');
-	re_reverse(b, print_buf, 'c');
+	if (!re_reverse_checker(a))
+		return (0);
+	if (!re_reverse_checker(b))
+		return (0);
+	return (1);
 }
 
-void	reverse_both(t_head *a, t_head *b, t_buf *print_buf)
+int	reverse_both_checker(t_head *a, t_head *b)
 {
-	reverse(a, print_buf, 'c');
-	reverse(b, print_buf, 'c');
+	if (!reverse_checker(a))
+		return (0);
+	if (!reverse_checker(b))
+		return (0);
+	return (1);
 }
 
-void	swap_both(t_head *a, t_head *b, t_buf *print_buf)
+int	swap_both_checker(t_head *a, t_head *b)
 {
-	swap(a, print_buf, 'c');
-	swap(b, print_buf, 'c');
+	if (!swap_checker(a))
+		return (0);
+	if (!swap_checker(b))
+		return (0);
+	return (1);
 }

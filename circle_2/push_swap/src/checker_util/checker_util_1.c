@@ -1,66 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_3.c                                          :+:      :+:    :+:   */
+/*   checker_util_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 12:26:53 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 10:59:30 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/07/09 10:59:39 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/07/09 14:08:08 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_buf	*last_buf(t_buf *buf)
-{
-	t_buf	*temp;
-
-	temp = 0;
-	while (buf->next)
-		buf = buf->next;
-	temp = buf;
-	return (temp);
-}
-
-int	find_word_in_list(t_list *lst, int data, int *error)
-{
-	while (lst)
-	{
-		if (lst->data == data)
-		{
-			*error = 1;
-			return (0);
-		}
-		lst = lst->next;
-	}
-	return (1);
-}
-
-int	free_char_pointer_and_return_zero(char **a)
-{
-	free(a);
-	return (0);
-}
-
-int	all_free_with_error(t_head *a, t_head *b, t_buf *buf)
+int	all_free_with_error_checker(t_head *a, t_head *b, t_ins *ins_list)
 {
 	if (a)
 		head_free(a);
 	if (b)
 		head_free(b);
-	if (buf)
-		print_buf_free(buf);
+	if (ins_list)
+		instruction_free(ins_list);
 	print_all("Error\n");
 	return (0);
 }
 
-void	all_free(t_head *a, t_head *b, t_buf *buf)
+void	all_free_checker(t_head *a, t_head *b)
 {
 	if (a)
 		head_free(a);
 	if (b)
 		head_free(b);
-	if (buf)
-		print_buf_free(buf);
+}
+
+t_ins	*initial_insturction_struct(void)
+{
+	t_ins	*ins;
+
+	ins = (t_ins *)malloc(sizeof(t_ins));
+	if (!ins)
+		return (0);
+	ins->ins = 0;
+	ins->next = 0;
+	ins->total_cnt = 0;
+	return (ins);
+}
+
+void	instruction_free(t_ins *ins_list)
+{
+	t_ins	*temp;
+
+	while (ins_list)
+	{
+		if (ins_list->next)
+			temp = ins_list->next;
+		else
+			temp = 0;
+		ins_list = 0;
+		free (ins_list);
+		if (temp)
+			ins_list = temp;
+	}
 }

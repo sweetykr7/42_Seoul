@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 11:34:12 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/08 12:04:05 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/09 12:32:45 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,6 @@ t_buf	*last_second_buf(t_buf *buf)
 		buf = buf->next;
 	temp = buf;
 	return (temp);
-}
-
-int	check_words(char *a, char *b)
-{
-	int	res;
-	int	i;
-
-	res = 1;
-	i = 0;
-	while (a[i])
-	{
-		if (a[i] != b[i])
-			return (0);
-		i++;
-	}
-	if (b[i])
-		return (0);
-	return (res);
 }
 
 int	count_jump_words(t_buf *buf, char *jump_words)

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/08 16:44:53 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/09 14:36:41 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ typedef struct print_buf_struct
 	struct print_buf_struct	*next;
 }	t_buf;
 
+typedef struct instruction_struct
+{
+	char						*ins;
+	int							total_cnt;
+	struct instruction_struct	*next;
+}	t_ins;
+
+int		get_number(char	**av, int ac, t_head *a);
+
 void	head_free(t_head *h);
 void	list_free(t_list *lst);
 t_pc	*pivot_cnt_pre_set(t_pc *pivot_cnt);
@@ -66,9 +75,13 @@ void	swap(t_head *a, t_buf *print_buf, char option);
 void	re_reverse(t_head *a, t_buf *print_buf, char option);
 void	reverse(t_head *a, t_buf *print_buf, char option);
 
-void	re_reverse_both(t_head *a, t_head *b, t_buf *print_buf);
-void	reverse_both(t_head *a, t_head *b, t_buf *print_buf);
-void	swap_both(t_head *a, t_head *b, t_buf *print_buf);
+int		push_from_to_checker(t_head *b, t_head *a);
+int		swap_checker(t_head *a);
+int		re_reverse_checker(t_head *a);
+int		reverse_checker(t_head *a);
+int		re_reverse_both_checker(t_head *a, t_head *b);
+int		reverse_both_checker(t_head *a, t_head *b);
+int		swap_both_checker(t_head *a, t_head *b);
 
 void	sort_a_case_1(t_head *a, t_head *b, t_buf *print_buf);
 void	sort_a_case_2(t_head *a, t_head *b, t_buf *print_buf);
@@ -126,6 +139,8 @@ void	print_buf_free(t_buf *buf);
 t_buf	*last_buf(t_buf *buf);
 int		find_word_in_list(t_list *lst, int data, int *error);
 int		free_char_pointer_and_return_zero(char **a);
+int		all_free_with_error(t_head *a, t_head *b, t_buf *buf);
+void	all_free(t_head *a, t_head *b, t_buf *buf);
 
 void	print_all(char const *s);
 void	print_free(t_buf *buf);
@@ -153,5 +168,16 @@ void	del_cnt_change1(t_buf *buf, char *change_words, int cnt, int *flag);
 void	del_3_change_1(t_buf *buf, char *change_words, char *str3, int *flag);
 void	del_2_change_1(t_buf *buf, char *change_words, char *str2, int *flag);
 void	del_2_3(t_buf *buf, char *str2, char *str3, int *flag);
+
+int		all_free_with_error_checker(t_head *a, t_head *b, t_ins *ins_list);
+void	all_free_checker(t_head *a, t_head *b);
+
+char	*get_next_line(int fd);
+int		instruction_check(char *str);
+t_ins	*initial_insturction_struct(void);
+
+t_ins	*insert_instruction(t_ins *ins, char *str);
+void	instruction_free(t_ins *ins_list);
+int		run_instruction(t_ins *ins_list, t_head *a, t_head *b);
 
 #endif
