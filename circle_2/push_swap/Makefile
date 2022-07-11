@@ -6,7 +6,7 @@
 #    By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 15:13:46 by sooyokim          #+#    #+#              #
-#    Updated: 2022/07/09 15:46:24 by sooyokim         ###   ########.fr        #
+#    Updated: 2022/07/11 19:23:09 by sooyokim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,12 @@ SORT_SOURCES = $(SORT_DIR)/util_sort_a.c $(SORT_DIR)/util_sort_a_case.c \
 INPUT_SOURCES = $(INPUT_UTIL_DIR)/get_number.c \
 		$(INPUT_UTIL_DIR)/util_input1.c $(INPUT_UTIL_DIR)/util_input2.c
 
-STACK_SOURCES = $(STACK_DIR)/util_divide_stack_a.c $(STACK_DIR)/util_divide_stack_b.c \
+STACK_SOURCES = $(STACK_DIR)/util_divide_stack_a.c \
+		$(STACK_DIR)/util_divide_stack_b.c \
 		$(STACK_DIR)/divide_stack_recur.c \
-		$(STACK_DIR)/util_stack_1.c
+		$(STACK_DIR)/util_divide_stack_recur.c \
+		$(STACK_DIR)/util_stack_1.c \
+		$(STACK_DIR)/util_stack_2.c
 
 UTIL_SOURCES = $(UTIL_DIR)/util_list.c $(UTIL_DIR)/util_print_buf.c \
 		$(UTIL_DIR)/utils_1.c $(UTIL_DIR)/utils_2.c $(UTIL_DIR)/utils_3.c\

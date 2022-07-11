@@ -1,40 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_sort_a_optimize_case.c                        :+:      :+:    :+:   */
+/*   util_sort_optimize_3_case.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:56:00 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/06 13:40:49 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 18:27:18 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_a_optimize_case1(t_head *a, t_buf *print_buf)
+int	sort_a_optimize_case1(t_head *a, t_buf *print_buf, int *error)
 {
-	re_reverse(a, print_buf, 'a');
-	swap(a, print_buf, 'a');
+	if (!re_reverse(a, print_buf, 'a'))
+		return (put_error_1_return_zero(error));
+	if (!swap(a, print_buf, 'a'))
+		return (put_error_1_return_zero(error));
+	return (1);
 }
 
-void	sort_a_optimize_case2(t_head *a, t_buf *print_buf)
+int	sort_a_optimize_case2(t_head *a, t_buf *print_buf, int *error)
 {
-	swap(a, print_buf, 'a');
+	if (!swap(a, print_buf, 'a'))
+		return (put_error_1_return_zero(error));
+	return (1);
 }
 
-void	sort_a_optimize_case3(t_head *a, t_buf *print_buf)
+int	sort_a_optimize_case3(t_head *a, t_buf *print_buf, int *error)
 {
-	re_reverse(a, print_buf, 'a');
+	if (!re_reverse(a, print_buf, 'a'))
+		return (put_error_1_return_zero(error));
+	return (1);
 }
 
-void	sort_a_optimize_case4(t_head *a, t_buf *print_buf)
+int	sort_a_optimize_case4(t_head *a, t_buf *print_buf, int *error)
 {
-	reverse(a, print_buf, 'a');
+	if (!reverse(a, print_buf, 'a'))
+		return (put_error_1_return_zero(error));
+	return (1);
 }
 
-void	sort_a_optimize_case5(t_head *a, t_buf *print_buf)
+int	sort_a_optimize_case5(t_head *a, t_buf *print_buf, int *error)
 {
-	swap(a, print_buf, 'a');
-	re_reverse(a, print_buf, 'a');
+	if (!swap(a, print_buf, 'a'))
+		return (put_error_1_return_zero(error));
+	if (!re_reverse(a, print_buf, 'a'))
+		return (put_error_1_return_zero(error));
+	return (1);
 }

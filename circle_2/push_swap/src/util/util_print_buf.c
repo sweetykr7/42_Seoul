@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:05:32 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/11 15:56:15 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:30:37 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	print_buf_out(t_buf *buf)
 	}
 }
 
-void	insert_print_buf_back_area(t_buf *temp, char *res)
+int	insert_print_buf_back_area(t_buf *temp, char *res)
 {
 	t_buf	*res_buf;
 
@@ -54,13 +54,16 @@ void	insert_print_buf_back_area(t_buf *temp, char *res)
 	else
 	{
 		res_buf = initial_print_buf();
+		if (!res_buf)
+			return (0);
 		temp->next = res_buf;
 		temp->next->print_buf = res;
 		temp->next->next = 0;
 	}
+	return (1);
 }
 
-t_buf	*insert_print_buf(t_buf *buf, char *str)
+int	insert_print_buf(t_buf *buf, char *str)
 {
 	char	*res;
 	t_buf	*temp;
@@ -73,15 +76,16 @@ t_buf	*insert_print_buf(t_buf *buf, char *str)
 	if (!res)
 	{
 		temp->next = 0;
-		return (buf);
+		return (0);
 	}
 	i = -1;
 	while (++i < strlen)
 		res[i] = str[i];
 	res[i] = '\0';
-	insert_print_buf_back_area(temp, res);
+	if (!insert_print_buf_back_area(temp, res))
+		return (0);
 	buf->total_cnt = buf->total_cnt + 1;
-	return (buf);
+	return (1);
 }
 
 t_buf	*initial_print_buf(void)

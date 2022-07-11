@@ -1,46 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_4.c                                          :+:      :+:    :+:   */
+/*   util_divide_stack_recur.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 12:33:09 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/11 18:41:41 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/07/11 17:05:54 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/07/11 17:17:29 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_words(char *a, char *b)
+int	process_remain_ra_data(t_head *a, t_buf *buf)
 {
-	int	res;
-	int	i;
+	int	check_sort_a_res;
 
-	res = 1;
-	i = 0;
-	while (a[i])
-	{
-		if (a[i] != b[i])
-			return (0);
-		i++;
-	}
-	if (b[i])
-		return (0);
-	return (res);
+	while (a->head->cluster_cnt == 0 || a->head->cluster_cnt == -1)
+		if (!re_reverse(a, buf, 'a'))
+			return (-1);
+	check_sort_a_res = check_sort_a(a);
+	return (check_sort_a_res);
 }
 
-int	put_error_1_return_zero(int *error)
+int	initial_sort_check(t_head *a)
 {
-	*error = 1;
-	return (0);
-}
+	int	check_sort_a_res;
 
-t_pivot	pivot_initial(void)
-{
-	t_pivot	p;
-
-	p.pivot1 = 0;
-	p.pivot2 = 0;
-	return (p);
+	check_sort_a_res = 0;
+	check_asc_sort_a(a, a->total_cnt);
+	check_sort_a_res = check_sort_a(a);
+	return (check_sort_a_res);
 }

@@ -6,27 +6,26 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:29:04 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 15:07:58 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:36:19 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_from_to(t_head *b, t_head *a, t_buf *print_buf, char option)
+int	push_from_to(t_head *b, t_head *a, t_buf *print_buf, char option)
 {
 	t_list	*pull_list;
 
 	if (b->total_cnt == 0)
-		return ;
+		return (1);
 	pull_list = pull_stack(b);
 	push_stack(a, pull_list);
-	if (option == 'a')
-		insert_print_buf(print_buf, "pa\n");
-	else if (option == 'b')
-		insert_print_buf(print_buf, "pb\n");
+	if (!push_from_to_insert_print_buf(print_buf, option))
+		return (0);
+	return (1);
 }
 
-void	swap(t_head *a, t_buf *print_buf, char option)
+int	swap(t_head *a, t_buf *print_buf, char option)
 {
 	t_list	*pull_list1;
 	t_list	*pull_list2;
@@ -41,20 +40,19 @@ void	swap(t_head *a, t_buf *print_buf, char option)
 	a->head = pull_list2;
 	a->head->next = pull_list1;
 	a->head->next->next = temp;
-	if (option == 'a')
-		insert_print_buf(print_buf, "sa\n");
-	else if (option == 'b')
-		insert_print_buf(print_buf, "sb\n");
+	if (!swap_insert_print_buf(print_buf, option))
+		return (0);
+	return (1);
 }
 
-void	re_reverse(t_head *a, t_buf *print_buf, char option)
+int	re_reverse(t_head *a, t_buf *print_buf, char option)
 {
 	t_list	*last_list;
 	t_list	*last_second_list;
 	t_list	*pre_first_lst;
 
 	if (a->total_cnt == 1)
-		return ;
+		return (1);
 	if (a->total_cnt == 2)
 	{
 		if (option == 'a')
@@ -68,19 +66,18 @@ void	re_reverse(t_head *a, t_buf *print_buf, char option)
 	last_second_list->next = 0;
 	a->head = last_list;
 	a->head->next = pre_first_lst;
-	if (option == 'a')
-		insert_print_buf(print_buf, "rra\n");
-	else if (option == 'b')
-		insert_print_buf(print_buf, "rrb\n");
+	if (!re_reverse_insert_print_buf(print_buf, option))
+		return (0);
+	return (1);
 }
 
-void	reverse(t_head *a, t_buf *print_buf, char option)
+int	reverse(t_head *a, t_buf *print_buf, char option)
 {
 	t_list	*pre_first_lst;
 	t_list	*temp;
 
 	if (a->total_cnt == 1)
-		return ;
+		return (1);
 	pre_first_lst = a->head;
 	a->head = a->head->next;
 	pre_first_lst->next = 0;
@@ -94,8 +91,7 @@ void	reverse(t_head *a, t_buf *print_buf, char option)
 		}
 		temp = temp->next;
 	}
-	if (option == 'a')
-		insert_print_buf(print_buf, "ra\n");
-	else if (option == 'b')
-		insert_print_buf(print_buf, "rb\n");
+	if (!reverse_insert_print_buf(print_buf, option))
+		return (0);
+	return (1);
 }

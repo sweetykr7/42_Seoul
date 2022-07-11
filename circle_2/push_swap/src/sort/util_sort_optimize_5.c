@@ -6,13 +6,13 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 10:09:17 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/08 12:37:06 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 18:45:44 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_optimize_5_cluster_cnt_set(t_head *a, t_head *b, t_buf *print_buf)
+int	sort_optimize_5_cluster_cnt_set(t_head *a, t_head *b, t_buf *print_buf)
 {
 	a->head->cluster_cnt = 3;
 	a->head->next->cluster_cnt = 0;
@@ -20,16 +20,25 @@ void	sort_optimize_5_cluster_cnt_set(t_head *a, t_head *b, t_buf *print_buf)
 	b->head->cluster_cnt = 2;
 	b->head->next->cluster_cnt = 0;
 	if (!check_asc_sort_a(a, 3))
-		sort_optimize_3(a, print_buf);
+	{
+		if (!sort_optimize_3(a, print_buf))
+			return (0);
+	}
 	if (!check_desc_sort_b(b, 2))
-		swap(b, print_buf, 'b');
-	push_from_to(b, a, print_buf, 'a');
-	push_from_to(b, a, print_buf, 'a');
+	{
+		if (!swap(b, print_buf, 'b'))
+			return (0);
+	}
+	if (!push_from_to(b, a, print_buf, 'a'))
+		return (0);
+	if (!push_from_to(b, a, print_buf, 'a'))
+		return (0);
 	a->head->cluster_cnt = -1;
 	a->head->next->cluster_cnt = -1;
+	return (1);
 }
 
-void	sort_optimize_5(t_head *a, t_head *b, t_buf *print_buf)
+int	sort_optimize_5(t_head *a, t_head *b, t_buf *print_buf)
 {
 	int		mid;
 	int		b_cnt;
@@ -37,17 +46,23 @@ void	sort_optimize_5(t_head *a, t_head *b, t_buf *print_buf)
 
 	mid = 0;
 	mid = get_pivot_mid(a, mid);
+	if (!mid)
+		return (0);
 	b_cnt = 0;
 	temp = a->head;
 	while (b_cnt < 2)
 	{
 		if (a->head->data < mid)
 		{
-			push_from_to(a, b, print_buf, 'b');
+			if (!push_from_to(a, b, print_buf, 'b'))
+				return (0);
 			b_cnt++;
 		}
 		else
-			reverse(a, print_buf, 'a');
+			if (!reverse(a, print_buf, 'a'))
+				return (0);
 	}
-	sort_optimize_5_cluster_cnt_set(a, b, print_buf);
+	if (!sort_optimize_5_cluster_cnt_set(a, b, print_buf))
+		return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/11 09:56:45 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 19:27:24 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,15 @@ void	push_stack(t_head *head_in, t_list *lst);
 t_list	*pull_stack(t_head *head_in);
 int		lst_last_data(t_list *lst);
 
-void	push_from_to(t_head *b, t_head *a, t_buf *print_buf, char option);
-void	swap(t_head *a, t_buf *print_buf, char option);
-void	re_reverse(t_head *a, t_buf *print_buf, char option);
-void	reverse(t_head *a, t_buf *print_buf, char option);
+int		push_from_to(t_head *b, t_head *a, t_buf *print_buf, char option);
+int		swap(t_head *a, t_buf *print_buf, char option);
+int		re_reverse(t_head *a, t_buf *print_buf, char option);
+int		reverse(t_head *a, t_buf *print_buf, char option);
+
+int		swap_insert_print_buf(t_buf *print_buf, char option);
+int		push_from_to_insert_print_buf(t_buf *print_buf, char option);
+int		reverse_insert_print_buf(t_buf *print_buf, char option);
+int		re_reverse_insert_print_buf(t_buf *print_buf, char option);
 
 int		push_from_to_checker(t_head *b, t_head *a);
 int		swap_checker(t_head *a);
@@ -83,56 +88,52 @@ int		re_reverse_both_checker(t_head *a, t_head *b);
 int		reverse_both_checker(t_head *a, t_head *b);
 int		swap_both_checker(t_head *a, t_head *b);
 
-void	sort_a_case_1(t_head *a, t_head *b, t_buf *print_buf);
-void	sort_a_case_2(t_head *a, t_head *b, t_buf *print_buf);
-void	sort_a_case_3(t_head *a, t_buf *print_buf);
-void	sort_a_case_4(t_head *a, t_buf *print_buf);
-void	sort_a_case_5(t_head *a, t_buf *print_buf);
+int		sort_a_case_1(t_head *a, t_head *b, t_buf *print_buf, int *error);
+int		sort_a_case_2(t_head *a, t_head *b, t_buf *print_buf, int *error);
+int		sort_a_case_3(t_head *a, t_buf *print_buf, int *error);
+int		sort_a_case_4(t_head *a, t_buf *print_buf, int *error);
+int		sort_a_case_5(t_head *a, t_buf *print_buf, int *error);
 
-void	sort_b_case_1(t_head *a, t_head *b, t_buf *print_buf);
-void	sort_b_case_2(t_head *a, t_head *b, t_buf *print_buf);
-void	sort_b_case_3(t_head *a, t_head *b, t_buf *print_buf);
-void	sort_b_case_4(t_head *a, t_head *b, t_buf *print_buf);
-void	sort_b_case_5(t_head *a, t_head *b, t_buf *print_buf);
+int		sort_b_case_1(t_head *a, t_head *b, t_buf *print_buf, int *error);
+int		sort_b_case_2(t_head *a, t_head *b, t_buf *print_buf, int *error);
+int		sort_b_case_3(t_head *a, t_head *b, t_buf *print_buf, int *error);
+int		sort_b_case_4(t_head *a, t_head *b, t_buf *print_buf, int *error);
+int		sort_b_case_5(t_head *a, t_head *b, t_buf *print_buf, int *error);
 
-void	sort_a(t_head *a, t_head *b, int size, t_buf *print_buf);
-void	sort_b(t_head *a, t_head *b, int size, t_buf *print_buf);
+int		sort_a(t_head *a, t_head *b, int size, t_buf *print_buf);
+int		sort_b(t_head *a, t_head *b, int size, t_buf *print_buf);
 void	write_sort_complete_a(t_head *a, int size);
 int		*int_loc(int size);
 int		check_asc_sort_a(t_head *a, int size);
 
-void	sort_optimize_3(t_head *a, t_buf *print_buf);
-void	sort_a_optimize_case1(t_head *a, t_buf *print_buf);
-void	sort_a_optimize_case2(t_head *a, t_buf *print_buf);
-void	sort_a_optimize_case3(t_head *a, t_buf *print_buf);
-void	sort_a_optimize_case4(t_head *a, t_buf *print_buf);
-void	sort_a_optimize_case5(t_head *a, t_buf *print_buf);
+int		sort_optimize_3(t_head *a, t_buf *print_buf);
+int		sort_a_optimize_case1(t_head *a, t_buf *print_buf, int *error);
+int		sort_a_optimize_case2(t_head *a, t_buf *print_buf, int *error);
+int		sort_a_optimize_case3(t_head *a, t_buf *print_buf, int *error);
+int		sort_a_optimize_case4(t_head *a, t_buf *print_buf, int *error);
+int		sort_a_optimize_case5(t_head *a, t_buf *print_buf, int *error);
 
-void	sort_optimize_5(t_head *a, t_head *b, t_buf *print_buf);
+int		sort_optimize_5(t_head *a, t_head *b, t_buf *print_buf);
 
 int		strsize(char *s);
 
-void	divide_stack_a_pivot1(t_head *a, t_head *b, int *p_cnt1, t_buf *buf);
-void	divide_stack_a_pivot2(t_head *a, t_head *b, int *p_cnt2, t_buf *buf);
-void	divide_stack_a_pivot3(t_head *a, int *p_cnt3, t_buf *buf);
-void	divide_stack_a(t_head *a, t_head *b, t_pivot *pivot, t_buf *buf);
-
-void	divide_stack_b_pivot1(t_head *b, int *p_cnt1, t_buf *buf);
-void	divide_stack_b_pivot2(t_head *a, t_head *b, int *p_cnt2, t_buf *buf);
-void	divide_stack_b_pivot3(t_head *a, t_head *b, int *p_cnt3, t_buf *buf);
-void	divide_stack_b(t_head *a, t_head *b, t_pivot *pivot, t_buf *buf);
+int		divide_stack_a(t_head *a, t_head *b, t_pivot pivot, t_buf *buf);
+int		divide_stack_b(t_head *a, t_head *b, t_pivot pivot, t_buf *buf);
 
 int		check_desc_sort_b(t_head *b, int size);
 int		check_asc_sort_a(t_head *a, int size);
 int		*sort_arr(int size, int *sort);
 int		check_sort_a(t_head *a);
 
-t_pivot	*get_pivot(t_head *a, t_pivot *p);
+t_pivot	get_pivot(t_head *a, t_pivot p);
 int		get_pivot_mid(t_head *a, int mid);
-void	divide_stack_recur(t_head *a, t_head *b, int total_cnt, t_buf *buf);
+int		divide_stack_recur(t_head *a, t_head *b, int total_cnt, t_buf *buf);
+
+int		initial_sort_check(t_head *a);
+int		process_remain_ra_data(t_head *a, t_buf *buf);
 
 t_buf	*initial_print_buf(void);
-t_buf	*insert_print_buf(t_buf *buf, char *str);
+int		insert_print_buf(t_buf *buf, char *str);
 void	print_buf_out(t_buf *buf);
 void	print_buf_free(t_buf *buf);
 
@@ -148,8 +149,6 @@ t_list	*last_lst(t_list *lst);
 t_list	*last_second_lst(t_list *lst);
 char	*insert_words(char *str);
 
-void	sort_optimize_3(t_head *a, t_buf *print_buf);
-
 t_buf	*algorithm_optimize(t_buf *buf);
 
 int		check_available_r_rr_delete(t_buf *buf, char *s2, char *s3, int *flag);
@@ -160,6 +159,9 @@ int		algorithm_optimize_case(t_buf *buf, char *str1, char *str2, char *str3);
 
 t_buf	*last_second_buf(t_buf *buf);
 int		check_words(char *a, char *b);
+int		put_error_1_return_zero(int *error);
+t_pivot	pivot_initial(void);
+
 int		count_jump_words(t_buf *buf, char *jump_words);
 int		jump_check(t_buf *buf, char *jump_words, char *words);
 void	free_del_2_3(t_buf *del1, t_buf *del2);
