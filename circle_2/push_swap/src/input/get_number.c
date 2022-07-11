@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 10:53:30 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 10:53:34 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 14:17:13 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ int	get_number(char	**av, int ac, t_head *a)
 	int		error;
 
 	i = 0;
-	j = 0;
+	j = -1;
 	error = 0;
 	while (++i < ac)
 	{
 		input = split_input(av[i], ' ', &words_cnt);
-		while (j < words_cnt)
+		if (!input)
+			return (0);
+		while (++j < words_cnt)
 		{
 			list_add(a, atoi_input(input[j], &error), 0, &error);
 			free(input[j]);
 			if (error)
 				return (free_char_pointer_and_return_zero(input));
-			j++;
 		}
 		free(input);
 		j = -1;
-		j = 0;
 	}
 	return (1);
 }

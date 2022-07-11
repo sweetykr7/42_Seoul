@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 10:59:39 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 14:08:08 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 10:58:14 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	instruction_free(t_ins *ins_list)
 			temp = ins_list->next;
 		else
 			temp = 0;
+		free(ins_list->ins);
 		ins_list = 0;
 		free (ins_list);
 		if (temp)

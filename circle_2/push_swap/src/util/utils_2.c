@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 10:54:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/08 12:26:48 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 09:55:14 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_pc	*pivot_cnt_pre_set(t_pc *pivot_cnt)
 	return (pivot_cnt);
 }
 
-void	print_all(char const *s)
+void	print_all(char *s)
 {
 	if (!s)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:55:59 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 15:35:41 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:14:39 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	get_instruction(t_ins *ins_list)
 	while (instruction)
 	{
 		if (!instruction_check(instruction))
+		{
+			free(instruction);
 			return (0);
+		}
 		insert_instruction(ins_list, instruction);
 		instruction = get_next_line(0);
 	}

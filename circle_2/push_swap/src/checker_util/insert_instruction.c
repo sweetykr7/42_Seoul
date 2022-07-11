@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 13:24:40 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 13:36:35 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 10:57:43 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,19 @@ void	insert_instruction_input_lst(t_ins *temp, char *res)
 
 t_ins	*insert_instruction(t_ins *ins, char *str)
 {
-	char	*res;
 	t_ins	*temp;
 	int		strlen;
 	int		i;
 
 	strlen = strsize(str);
 	temp = last_instruction(ins);
-	res = (char *)malloc(sizeof(strlen) + 1);
-	if (!res)
+	if (!str)
 	{
 		temp->next = 0;
 		return (ins);
 	}
 	i = -1;
-	while (++i < strlen)
-		res[i] = str[i];
-	res[i] = '\0';
-	insert_instruction_input_lst(temp, res);
+	insert_instruction_input_lst(temp, str);
 	ins->total_cnt = ins->total_cnt + 1;
 	return (ins);
 }

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:30:54 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 14:36:41 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 09:56:45 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		get_number(char	**av, int ac, t_head *a);
 void	head_free(t_head *h);
 void	list_free(t_list *lst);
 t_pc	*pivot_cnt_pre_set(t_pc *pivot_cnt);
-char	**split_input(char const *s, char c, int *words_cnt);
+char	**split_input(char *s, char c, int *words_cnt);
 int		atoi_input(char *str, int *error);
 
 t_head	*new_head(void);
@@ -142,7 +142,7 @@ int		free_char_pointer_and_return_zero(char **a);
 int		all_free_with_error(t_head *a, t_head *b, t_buf *buf);
 void	all_free(t_head *a, t_head *b, t_buf *buf);
 
-void	print_all(char const *s);
+void	print_all(char *s);
 void	print_free(t_buf *buf);
 t_list	*last_lst(t_list *lst);
 t_list	*last_second_lst(t_list *lst);

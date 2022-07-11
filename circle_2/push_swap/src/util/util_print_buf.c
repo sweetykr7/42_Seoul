@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:05:32 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 13:28:29 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:56:15 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	print_buf_free(t_buf *buf)
 			temp = buf->next;
 		else
 			temp = 0;
+		free(buf->print_buf);
 		buf = 0;
 		free (buf);
 		buf = temp;
