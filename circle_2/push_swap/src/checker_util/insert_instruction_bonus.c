@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert_instruction.c                               :+:      :+:    :+:   */
+/*   insert_instruction_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 13:24:40 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/11 10:57:43 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/12 11:04:21 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 t_ins	*last_instruction(t_ins *ins)
 {

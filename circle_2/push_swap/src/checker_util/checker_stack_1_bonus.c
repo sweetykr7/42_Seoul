@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_stack_1.c                                  :+:      :+:    :+:   */
+/*   checker_stack_1_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 14:18:18 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 14:34:32 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/12 11:04:23 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	push_from_to_checker(t_head *b, t_head *a)
 {

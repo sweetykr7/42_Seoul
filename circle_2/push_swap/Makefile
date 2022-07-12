@@ -6,7 +6,7 @@
 #    By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 15:13:46 by sooyokim          #+#    #+#              #
-#    Updated: 2022/07/11 19:23:09 by sooyokim         ###   ########.fr        #
+#    Updated: 2022/07/12 10:40:53 by sooyokim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,14 +54,14 @@ UTIL_SOURCES = $(UTIL_DIR)/util_list.c $(UTIL_DIR)/util_print_buf.c \
 
 
 CHECKER_ONLY_SOURCES = checker.c \
-		$(CHECKER_DIR)/checker_util_1.c \
-		$(CHECKER_DIR)/instruction_check.c \
-		$(CHECKER_DIR)/insert_instruction.c \
-		$(CHECKER_DIR)/run_instruction.c \
-		$(CHECKER_DIR)/checker_stack_1.c \
-		$(CHECKER_DIR)/checker_stack_2.c \
-		$(GNL_DIR)/get_next_line_utils.c \
-		$(GNL_DIR)/get_next_line.c 
+		$(CHECKER_DIR)/checker_util_1_bonus.c \
+		$(CHECKER_DIR)/instruction_check_bonus.c \
+		$(CHECKER_DIR)/insert_instruction_bonus.c \
+		$(CHECKER_DIR)/run_instruction_bonus.c \
+		$(CHECKER_DIR)/checker_stack_1_bonus.c \
+		$(CHECKER_DIR)/checker_stack_2_bonus.c \
+		$(GNL_DIR)/get_next_line_utils_bonus.c \
+		$(GNL_DIR)/get_next_line_bonus.c 
 
 PUSH_SWAP_SOURCES = $(PUSH_SWAP_ONLY_SOURCES) $(INPUT_SOURCES) $(STACK_SOURCES) $(UTIL_SOURCES) $(SORT_SOURCES)
 CHECKER_SOURCES = $(CHECKER_ONLY_SOURCES) $(INPUT_SOURCES) $(STACK_SOURCES) $(UTIL_SOURCES) $(SORT_SOURCES)

@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"algorithm": "c"
+		"algorithm": "c",
+		"get_next_line_bonus.h": "c",
+		"push_swap.h": "c"
 	}
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_util_1.c                                   :+:      :+:    :+:   */
+/*   checker_util_1_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 10:59:39 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/11 10:58:14 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/12 11:04:21 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	all_free_with_error_checker(t_head *a, t_head *b, t_ins *ins_list)
 {

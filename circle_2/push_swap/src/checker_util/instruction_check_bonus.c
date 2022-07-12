@@ -1,54 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_instruction.c                                  :+:      :+:    :+:   */
+/*   instruction_check_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 13:56:06 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/09 15:35:01 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/07/09 12:26:23 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/07/12 11:04:20 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-int	run_instruction_case(char *str, t_head *a, t_head *b)
+int	instruction_check(char *str)
 {
 	if (check_words(str, "pa\n"))
-		return (push_from_to_checker(b, a));
+		return (1);
 	if (check_words(str, "pb\n"))
-		return (push_from_to_checker(a, b));
+		return (1);
 	if (check_words(str, "ra\n"))
-		return (reverse_checker(a));
+		return (1);
 	if (check_words(str, "rb\n"))
-		return (reverse_checker(b));
+		return (1);
 	if (check_words(str, "rr\n"))
-		return (reverse_both_checker(a, b));
+		return (1);
 	if (check_words(str, "rra\n"))
-		return (re_reverse_checker(a));
+		return (1);
 	if (check_words(str, "rrb\n"))
-		return (re_reverse_checker(b));
+		return (1);
 	if (check_words(str, "rrr\n"))
-		return (re_reverse_both_checker(a, b));
+		return (1);
 	if (check_words(str, "sa\n"))
-		return (swap_checker(a));
+		return (1);
 	if (check_words(str, "sb\n"))
-		return (swap_checker(b));
+		return (1);
 	if (check_words(str, "ss\n"))
-		return (swap_both_checker(a, b));
-	return (1);
-}
-
-int	run_instruction(t_ins *ins_list, t_head *a, t_head *b)
-{
-	t_ins	*temp;
-
-	temp = ins_list;
-	while (temp)
-	{
-		if (!run_instruction_case(temp->ins, a, b))
-			return (0);
-		temp = temp->next;
-	}
-	return (1);
+		return (1);
+	return (0);
 }

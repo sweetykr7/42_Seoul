@@ -6,11 +6,11 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:55:59 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/11 11:14:39 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/12 11:00:02 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	get_instruction(t_ins *ins_list)
 {

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:05:32 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/11 17:30:37 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/12 10:02:55 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ void	print_buf_free(t_buf *buf)
 		else
 			temp = 0;
 		free(buf->print_buf);
-		buf = 0;
 		free (buf);
 		buf = temp;
 	}
-	free(buf);
 }
 
 void	print_buf_out(t_buf *buf)
