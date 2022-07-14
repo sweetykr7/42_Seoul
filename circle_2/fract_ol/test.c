@@ -7,6 +7,7 @@ void	*win_ptr;
 
 int	key_check(int key,void *p)
 {
+	(void)p;
   printf("Key in Win : %d\n",key);
   if (key==53) //esc를 누르면 종료
     exit(0);
