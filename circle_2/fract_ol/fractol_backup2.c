@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   fractol_backup2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:44:26 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/14 20:01:16 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/15 10:41:12 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,8 @@ int	main(int ac, const char **av)
 		return (0);
 	mlx = init_mlx();
 	ft_putstr("test\n");
-	put_pixel(mlx->img);
+	//put_pixel(mlx->img);
+	test_put_pixel(&mlx->img);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img->img_ptr, 0, 0);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
@@ -224,3 +225,12 @@ int	main(int ac, const char **av)
 //   mlx_loop(mlx);
 //   return (0);
 // }
+
+// #define		X_EVENT_KEY_PRESS		2
+// #define		X_EVENT_KEY_EXIT		17
+// #define		X_EVENT_MOUSE_PRESS		4
+// #define		X_EVENT_MOUSE_MOTION	6
+// #define		WIN_WIDTH				800
+// #define		WIN_HEIGHT				600
+// #define		KEY_ESC					53
+// #define		ITER_MAX				100

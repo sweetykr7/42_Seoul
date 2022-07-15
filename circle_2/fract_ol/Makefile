@@ -6,7 +6,7 @@
 #    By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 14:46:02 by sooyokim          #+#    #+#              #
-#    Updated: 2022/07/14 14:48:37 by sooyokim         ###   ########.fr        #
+#    Updated: 2022/07/15 11:22:45 by sooyokim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LIBFT_LNK = -L $(LIBFT_DIR) -lft
 
 #TESTDIR = src/test
 
-SRCS = fractol.c
+SRCS = fractol.c keyboard.c
 
 OBJECTS = $(SRCS:.c=.o)
 
@@ -38,7 +38,7 @@ OBJECTS = $(SRCS:.c=.o)
 	$(CC) -I $(MLXDIR) -I $(HEADERS) -I $(LIBFT_DIR) -c $< -o $@
 
 $(NAME) : $(OBJECTS)		
-	$(CC) -o $@ $< $(LIBFT_LNK) $(MLX_LNK) 
+	$(CC) -o $@ $^ $(LIBFT_LNK) $(MLX_LNK) 
 
 all : $(NAME)
 

@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 10:52:53 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/15 17:25:01 by sooyokim         ###   ########.fr       */
+/*   Created: 2022/07/15 11:10:40 by sooyokim          #+#    #+#             */
+/*   Updated: 2022/07/15 16:52:48 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
-
-# define W_WIDTH 800
-# define W_HEIGHT 600
-# define ITER_MAX 50
-
-typedef struct structure_img{
-	void		*img_ptr;
-	char		*data;
-	int			size_l;
-	int			bpp;
-	int			endian;
-}				t_img;
-
-typedef struct structure_mlx
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		img;
-}				t_mlx;
-
-int		hook_keydown(int key, t_mlx *mlx);
-
+#ifndef KEYS_H
+# define KEYS_H
+# define K_ESC			53
+# define K_NUM_MULT	67
+# define K_NUM_DIV		75
+# define K_NUM_PLUS	69
+# define K_NUM_MINUS	78
+# define K_NUM_ENTER	76
+# define K_NUM_0		82
+# define K_UP			126
+# define K_DOWN		125
+# define K_LEFT		123
+# define K_RIGHT		124
+# define K_DIGIT_1		18
+# define K_L			37
 #endif

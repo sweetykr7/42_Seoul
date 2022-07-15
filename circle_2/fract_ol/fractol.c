@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:44:26 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/14 20:01:16 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:57:57 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,50 @@ int		color_set(int iter)
 	return (color);
 }
 
+int		julia(int count_w, int count_h, int iter)
+{
+	double	c_re;
+	double	c_im;
+	double	x;
+	double	x_new;
+	double	y;
+
+	c_re = 0;
+	c_im = 1;
+	x = ((count_w - W_WIDTH / 2) * 4.0 / W_WIDTH);
+	y = ((W_HEIGHT / 2) - count_h) * 4.0 / W_HEIGHT;
+	while ((pow(x, 2.0) + pow(y, 2.0) < 4) && (iter < ITER_MAX))
+	{
+		x_new = pow(x, 2.0) - pow(y, 2.0) + c_re;
+		y = 2 * x * y + c_im;
+		x = x_new;
+		iter++;
+	}
+	return (iter);
+}
+
+// int		mandelbrot(int i, int j, int iter)
+// {
+// 	double c_re;
+// 	double c_im;
+// 	double x;
+// 	double x_new;
+// 	double y;
+
+// 	//iter++;
+// 	c_re = ((i - W_WIDTH / 2) * 3 / W_WIDTH) - 0.5;
+// 	c_im = ((W_HEIGHT / 2) - j) * 2.0 / W_HEIGHT;
+// 	x = 0;
+// 	y = 0;
+// 	while ((pow(x, 2.0) + pow(y, 2.0) < 4) && (iter < ITER_MAX))
+// 	{
+// 		x_new = pow(x, 2.0) - pow(y, 2.0) + c_re;
+// 		y = 2 * x * y + c_im;
+// 		x = x_new;
+// 		iter++;
+// 	}
+// 	return (iter);
+// }
 
 int		mandelbrot(int count_w, int count_h, int iter)
 {
@@ -62,9 +106,8 @@ int		mandelbrot(int count_w, int count_h, int iter)
 	double x_new;
 	double y;
 
-	//iter++;
 	c_re = ((count_w - W_WIDTH / 2) * 3.0 / W_WIDTH) - 0.5;
-	c_im = ((W_HEIGHT / 2) - count_h) * 2.0 / W_HEIGHT;
+	c_im = ((W_HEIGHT / 2) - count_h) * 2.0 / W_HEIGHT - 0.5;
 	x = 0;
 	y = 0;
 	while ((pow(x, 2.0) + pow(y, 2.0) < 4) && (iter < ITER_MAX))
@@ -78,7 +121,7 @@ int		mandelbrot(int count_w, int count_h, int iter)
 }
 
 
-void	put_pixel(t_img *img)
+void	put_pixel(t_img img, t_mlx *mlx)
 {
 	int		iter;
     int		color;
@@ -86,20 +129,21 @@ void	put_pixel(t_img *img)
 	int		j;
 
 	i = 0;
-	while (i <= W_HEIGHT)
+	while (i < W_WIDTH)
 	{
 		j = 0;
-		while (j <= W_WIDTH)
+		while (j < W_HEIGHT)
 		{
 			iter = mandelbrot(i, j, 0);
-			//iter = julia(count_w, count_h, 0, img);
+			//iter = julia(i, j, 0);
 			if (iter < ITER_MAX)
 			{
 				color = color_set(iter);
-				my_mlx_pixel_put(img, i, j, 0x00FFFFFF);
+				//0x00FFFFFF
+				my_mlx_pixel_put(&img, i, j, color);
 			}
             else
-				my_mlx_pixel_put(img, i, j, 0x00000000);
+				my_mlx_pixel_put(&img, i, j, 0x00000000);			
 			j++;
 		}
 		i++;
@@ -118,18 +162,18 @@ t_img	*del_image(t_mlx *mlx, t_img *img)
 	return (0);
 }
 
-t_img	*new_image(t_mlx *mlx)
+t_img	new_image(t_mlx *mlx)
 {	
-	t_img	*img;
+	t_img	img;
 
-	img = malloc(sizeof(t_img));
-	if (!mlx->img)
-		return (0);
-	img->img_ptr = mlx_new_image(mlx->mlx_ptr, W_WIDTH, W_HEIGHT);
-	if (!img->img_ptr)
-		return (del_image(mlx, img));
-	img->data = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->size_l,
-			&img->endian);
+	// img = malloc(sizeof(t_img));
+	// if (!img)
+	// 	return (0);
+	img.img_ptr = mlx_new_image(mlx->mlx_ptr, W_WIDTH, W_HEIGHT);
+	// if (!img.img_ptr)
+	// 	return (del_image(mlx, img));
+	img.data = mlx_get_data_addr(img.img_ptr, &img.bpp, &img.size_l,
+			&img.endian);
 	return (img);
 }
 
@@ -157,9 +201,27 @@ t_mlx	*init_mlx(void)
 	if (!mlx)
 		return (0);
 	mlx->img = new_image(mlx);
-	if (!mlx->img)
-		return (0);
+	// if (!mlx->img)
+	// 	return (0);
 	return (mlx);
+}
+
+#include <stdio.h>
+int ft_mouse_press(int button, int x, int y, void *p)
+{
+	printf("button_num: %d , press at %dx%d\n", button, x, y);	
+	return (0);
+}
+
+int hook_mousedown(int button, int x, int y, void *p)
+{
+	printf("button_num: %d , press at %dx%d\n", button, x, y);	
+	return (0);
+}
+int hook_mouseup(int button, int x, int y, void *p)
+{
+	printf("button_num: %d , press at %dx%d\n", button, x, y);	
+	return (0);
 }
 
 int	main(int ac, const char **av)
@@ -170,57 +232,15 @@ int	main(int ac, const char **av)
 		return (0);
 	mlx = init_mlx();
 	ft_putstr("test\n");
-	put_pixel(mlx->img);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img->img_ptr, 0, 0);
+	put_pixel(mlx->img, mlx);
+	//test_put_pixel(mlx->img);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, (mlx->img.img_ptr), 0, 0);
+	//mlx_hook(mlx->win_ptr, 4, 0, ft_mouse_press, 0); //클릭
+	mlx_key_hook(mlx->win_ptr, hook_keydown, mlx); 
+	mlx_hook(mlx->win_ptr, 4, 1L << 2, hook_mousedown, mlx);
+	mlx_hook(mlx->win_ptr, 5, 1L << 3, hook_mouseup, mlx);
+	//mlx_hook(mlx->window, 6, 1L << 6, hook_mousemove, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
 }
 
-
-
-// #include "mlx.h"
-
-// typedef struct  s_data
-// {
-//   void	*img;
-//   char	*addr;
-//   int	bits_per_pixel;
-//   int	line_length;
-//   int	endian;
-// }               t_data;
-
-// void  my_mlx_pixel_put(t_data *data, int x, int y, int color)
-// {
-//   char *dst;
-
-//   dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-//   *(unsigned int*)dst = color;
-// }
-
-// int main(void)
-// {
-//   void	  *mlx;
-//   void	  *mlx_win;
-//   t_data  img;
-//   int     i;
-//   int     j;
-//   int     k;
-
-//   mlx = mlx_init();
-//   mlx_win = mlx_new_window(mlx, 600, 400, "miniRT");
-//   img.img = mlx_new_image(mlx, 600, 400);
-//   img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-//   for (i = 250, k = 99; i < 300; i++, k -= 2)
-//   {
-//     for (j = 150 + k; j < 250; j++)
-//       my_mlx_pixel_put(&img, i, j, 0x0000FF00);
-//   }
-//   for (i = 300, k = 0; i < 350; i++, k += 2)
-//   {
-//     for (j = 150 + k; j < 250; j++)
-//       my_mlx_pixel_put(&img, i, j, 0x0000FF00);
-//   }
-//   mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-//   mlx_loop(mlx);
-//   return (0);
-// }
