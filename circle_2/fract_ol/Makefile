@@ -6,7 +6,7 @@
 #    By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 14:46:02 by sooyokim          #+#    #+#              #
-#    Updated: 2022/07/15 11:22:45 by sooyokim         ###   ########.fr        #
+#    Updated: 2022/07/18 19:07:23 by sooyokim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LIBFT_LNK = -L $(LIBFT_DIR) -lft
 
 #TESTDIR = src/test
 
-SRCS = fractol.c keyboard.c
+SRCS = fractol.c keyboard.c zoom.c move.c screen.c
 
 OBJECTS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:44:26 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/15 17:57:57 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/18 19:45:08 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,25 @@ int		color_set(int iter)
 	return (color);
 }
 
-int		julia(int count_w, int count_h, int iter)
+int		julia(t_count count, int iter, t_viewpoint *vp)
 {
+	t_complex	z;
 	double	c_re;
 	double	c_im;
 	double	x;
 	double	x_new;
 	double	y;
 
-	c_re = 0;
-	c_im = 1;
-	x = ((count_w - W_WIDTH / 2) * 4.0 / W_WIDTH);
-	y = ((W_HEIGHT / 2) - count_h) * 4.0 / W_HEIGHT;
-	while ((pow(x, 2.0) + pow(y, 2.0) < 4) && (iter < ITER_MAX))
+	c_re = -1;
+	c_im = 0;
+	// x = ((count.i - W_WIDTH / 2) * 4.0 / W_WIDTH);
+	// y = ((W_HEIGHT / 2) - count.j) * 4.0 / W_HEIGHT;
+	z = screen_to_complex(count.i, count.j, vp);
+	x = z.re;
+	y = z.im;
+	while ((x * x + y * y < 4) && (iter < ITER_MAX))
 	{
-		x_new = pow(x, 2.0) - pow(y, 2.0) + c_re;
+		x_new = x * x - y * y + c_re;
 		y = 2 * x * y + c_im;
 		x = x_new;
 		iter++;
@@ -75,45 +79,20 @@ int		julia(int count_w, int count_h, int iter)
 	return (iter);
 }
 
-// int		mandelbrot(int i, int j, int iter)
-// {
-// 	double c_re;
-// 	double c_im;
-// 	double x;
-// 	double x_new;
-// 	double y;
-
-// 	//iter++;
-// 	c_re = ((i - W_WIDTH / 2) * 3 / W_WIDTH) - 0.5;
-// 	c_im = ((W_HEIGHT / 2) - j) * 2.0 / W_HEIGHT;
-// 	x = 0;
-// 	y = 0;
-// 	while ((pow(x, 2.0) + pow(y, 2.0) < 4) && (iter < ITER_MAX))
-// 	{
-// 		x_new = pow(x, 2.0) - pow(y, 2.0) + c_re;
-// 		y = 2 * x * y + c_im;
-// 		x = x_new;
-// 		iter++;
-// 	}
-// 	return (iter);
-// }
-
-int		mandelbrot(int count_w, int count_h, int iter)
+int	mandelbrot(t_count count, int iter, t_viewpoint *vp)
 {
-	double c_re;
-	double c_im;
-	double x;
-	double x_new;
-	double y;
+	t_complex	c;
+	double		x;
+	double		x_new;
+	double		y;
 
-	c_re = ((count_w - W_WIDTH / 2) * 3.0 / W_WIDTH) - 0.5;
-	c_im = ((W_HEIGHT / 2) - count_h) * 2.0 / W_HEIGHT - 0.5;
+	c = screen_to_complex(count.i, count.j, vp);
 	x = 0;
 	y = 0;
-	while ((pow(x, 2.0) + pow(y, 2.0) < 4) && (iter < ITER_MAX))
+	while ((x * x + y * y < 4) && (iter < ITER_MAX))
 	{
-		x_new = pow(x, 2.0) - pow(y, 2.0) + c_re;
-		y = 2 * x * y + c_im;
+		x_new = x * x - y * y + c.re;
+		y = 2 * x * y + c.im;
 		x = x_new;
 		iter++;
 	}
@@ -121,33 +100,32 @@ int		mandelbrot(int count_w, int count_h, int iter)
 }
 
 
-void	put_pixel(t_img img, t_mlx *mlx)
+void	render(t_mlx *mlx)
 {
+	t_img	img;
 	int		iter;
-    int		color;
-	int		i;
-	int		j;
+	int		color;
+	t_count	c;
 
-	i = 0;
-	while (i < W_WIDTH)
+	img = mlx->img;
+	c.i = -1;
+	while (++c.i < W_WIDTH)
 	{
-		j = 0;
-		while (j < W_HEIGHT)
+		c.j = -1;
+		while (++c.j < W_HEIGHT)
 		{
-			iter = mandelbrot(i, j, 0);
-			//iter = julia(i, j, 0);
+			//iter = mandelbrot(c, 0, mlx->vp);
+			iter = julia(c, 0, mlx->vp);
 			if (iter < ITER_MAX)
 			{
-				color = color_set(iter);
-				//0x00FFFFFF
-				my_mlx_pixel_put(&img, i, j, color);
+				color = color_set(iter);//0x00FFFFFF
+				my_mlx_pixel_put(&img, c.i, c.j, color);
 			}
             else
-				my_mlx_pixel_put(&img, i, j, 0x00000000);			
-			j++;
-		}
-		i++;
+				my_mlx_pixel_put(&img, c.i, c.j, 0x00000000);			
+		}		
 	}
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, (mlx->img.img_ptr), 0, 0);
 }
 
 t_img	*del_image(t_mlx *mlx, t_img *img)
@@ -190,7 +168,44 @@ t_mlx	*mlx_structure_init(t_mlx *mlx)
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, W_WIDTH, W_HEIGHT, "fractol");
 	if (!mlx->win_ptr)
 		return (0);
+	mlx->vp = malloc(sizeof(t_viewpoint));
+	if (!mlx->vp)
+		return (0);
 	return (mlx);
+}
+
+void		viewport_fit(t_viewpoint *v)
+{
+	double w;
+	double h;
+
+	w = v->xmax - v->xmin;
+	h = v->ymax - v->ymin;
+	if (w / h >= (float)W_WIDTH / W_HEIGHT)
+	{
+		v->ymin = -(w * W_HEIGHT / W_WIDTH / 2);
+		v->ymax = w * W_HEIGHT / W_WIDTH / 2;
+	}
+	else
+	{
+		v->xmin = -(h * W_WIDTH / W_HEIGHT / 2);
+		v->xmax = (h * W_WIDTH / W_HEIGHT / 2);
+	}
+}
+#include <stdio.h>
+t_viewpoint *init_viewpoint(t_viewpoint *vp)
+{
+	vp->offx = 0.0f;
+	vp->offy = 0.3f;
+	vp->xmax = 1.0f;
+	vp->xmin = -2.5f;
+	vp->ymax = 1.0f;
+	vp->ymin = -1.0f;
+	vp->zoom = 1.0f;
+	viewport_fit(vp);
+	
+	//printf("vp->xmax : %f\n", vp->xmax);
+	return (vp);
 }
 
 t_mlx	*init_mlx(void)
@@ -201,46 +216,52 @@ t_mlx	*init_mlx(void)
 	if (!mlx)
 		return (0);
 	mlx->img = new_image(mlx);
+	ft_putstr("init_mlx \n");
+	mlx->vp = init_viewpoint(mlx->vp);
+	ft_putstr("init_mlx \n");
 	// if (!mlx->img)
 	// 	return (0);
 	return (mlx);
 }
 
-#include <stdio.h>
-int ft_mouse_press(int button, int x, int y, void *p)
+int hook_mousedown(int button, int x, int y, t_mlx *mlx)
 {
-	printf("button_num: %d , press at %dx%d\n", button, x, y);	
-	return (0);
-}
+	printf("button_num: %d , press at %dx%d\n", button, x, y);
+	if (button == 4)
+	{
+		zoom(x, W_HEIGHT - y, mlx, 1 / ZOOM);
+		render(mlx);
+	}
+	else if (button == 5)
+	{
+		zoom(x, W_HEIGHT - y, mlx, ZOOM);
+		render(mlx);
+	}
 
-int hook_mousedown(int button, int x, int y, void *p)
-{
-	printf("button_num: %d , press at %dx%d\n", button, x, y);	
 	return (0);
 }
-int hook_mouseup(int button, int x, int y, void *p)
+int hook_mouseup(int button, int x, int y, t_mlx *mlx)
 {
-	printf("button_num: %d , press at %dx%d\n", button, x, y);	
+	printf("mouseup!!!!! button_num: %d , press at %dx%d\n", button, x, y);	
+	// zoom(x,y, mlx, ZOOM);
 	return (0);
 }
 
 int	main(int ac, const char **av)
 {
-	t_mlx	*mlx;
+	t_mlx		*mlx;
+	t_viewpoint	*vp;
 
 	if (!input_check(ac, av))
 		return (0);
 	mlx = init_mlx();
-	ft_putstr("test\n");
-	put_pixel(mlx->img, mlx);
-	//test_put_pixel(mlx->img);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, (mlx->img.img_ptr), 0, 0);
+	render(mlx);
 	//mlx_hook(mlx->win_ptr, 4, 0, ft_mouse_press, 0); //클릭
 	mlx_key_hook(mlx->win_ptr, hook_keydown, mlx); 
-	mlx_hook(mlx->win_ptr, 4, 1L << 2, hook_mousedown, mlx);
-	mlx_hook(mlx->win_ptr, 5, 1L << 3, hook_mouseup, mlx);
+	mlx_hook(mlx->win_ptr, 4, 0, hook_mousedown, mlx); //1L << 2
+	//mlx_hook(mlx->win_ptr, 5, 0, hook_mouseup, mlx); //1L << 3
 	//mlx_hook(mlx->window, 6, 1L << 6, hook_mousemove, mlx);
+	//mlx_loop_hook(mlx->mlx_ptr, main_loop, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
 }
-

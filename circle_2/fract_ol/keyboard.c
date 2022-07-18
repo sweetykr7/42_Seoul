@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 05:33:43 by pbondoer          #+#    #+#             */
-/*   Updated: 2022/07/15 11:17:20 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:54:38 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 // 	if (key == K_L)
 // 		mlx->mouselock = 1 - mlx->mouselock;
 // }
+#include "libft.h"
+
 
 int		hook_keydown(int key, t_mlx *mlx)
 {
@@ -60,10 +62,29 @@ int		hook_keydown(int key, t_mlx *mlx)
 	// if (key == K_NUM_DIV)
 	// 	if (mlx->viewport.max / 2 >= 2)
 	// 		mlx->viewport.max /= 2;
-	// if (key == K_NUM_PLUS)
-	// 	zoom(WIN_WIDTH / 2, WIN_HEIGHT / 2, &mlx->viewport, 1 / ZOOM);
-	// if (key == K_NUM_MINUS)
-	// 	zoom(WIN_WIDTH / 2, WIN_HEIGHT / 2, &mlx->viewport, ZOOM);
+	if (key == K_NUM_PLUS)
+	{
+		//zoom(W_WIDTH / 2, W_HEIGHT / 2, mlx->vp, 1 / ZOOM);
+		zoom(W_WIDTH / 2, W_HEIGHT / 2, mlx, 1 / ZOOM);
+		ft_putstr("test plus \n");
+		ft_putstr("test plus render end\n");
+	}
+	if (key == K_NUM_MINUS)
+	{
+		//zoom(W_WIDTH / 2, W_HEIGHT / 2, mlx->vp, ZOOM);
+		zoom(W_WIDTH / 2, W_HEIGHT / 2, mlx, ZOOM);
+		ft_putstr("test minus \n");
+		ft_putstr("test minus render end\n");
+	}
+	if (key == K_UP)
+		move(0, 0, mlx, 'u');
+	if (key == K_DOWN)
+		move(0, 0, mlx, 'd');
+	if (key == K_LEFT)
+		move(0, 0, mlx, 'l');
+	if (key == K_RIGHT)
+		move(0, 0, mlx, 'r');
+	//if (key == K_DOWN)
 	// move(key, mlx);
 	// if (draw_hooks(key, mlx))
 	// 	render(mlx);

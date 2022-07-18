@@ -4,6 +4,7 @@
 		"fractol.h": "c",
 		"libft.h": "c",
 		"math.h": "c",
-		"keys.h": "c"
+		"keys.h": "c",
+		"stdio.h": "c"
 	}
 }
