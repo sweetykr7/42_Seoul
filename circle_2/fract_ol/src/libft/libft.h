@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:47:05 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/14 11:34:54 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:44:07 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-
 int					ft_strcmp(const char *s1, const char *s2);
 size_t				ft_strlen(const char *s);
 void				ft_putstr(char const *s);
-
 
 void				*ft_calloc(size_t count, size_t size);
 void				ft_putendl_fd(char const *s, int fd);
