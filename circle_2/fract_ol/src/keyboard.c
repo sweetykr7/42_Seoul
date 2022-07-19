@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 05:33:43 by pbondoer          #+#    #+#             */
-/*   Updated: 2022/07/19 16:03:39 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:14:24 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 #include "keys.h"
 #include <stdlib.h>
 #include "mlx.h"
+
+void	color_change(int key, t_mlx *mlx)
+{
+	if (key == K_DIGIT_1)
+		mlx->color_set = 0.3;
+	if (key == K_DIGIT_2)
+		mlx->color_set = 0.2;
+	if (key == K_DIGIT_3)
+		mlx->color_set = 0.4;
+	if (key == K_DIGIT_4)
+		mlx->color_set = 0.5;
+	render(mlx);
+}
 
 int	hook_key(int key, t_mlx *mlx)
 {
@@ -33,5 +46,7 @@ int	hook_key(int key, t_mlx *mlx)
 		move(0, 0, mlx, 'l');
 	if (key == K_RIGHT)
 		move(0, 0, mlx, 'r');
+	if (18 <= key && key <= 21)
+		color_change(key, mlx);
 	return (0);
 }

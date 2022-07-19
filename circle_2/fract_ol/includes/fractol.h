@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:52:53 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/19 18:15:11 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:05:06 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct structure_mlx
 	t_viewpoint	*vp;
 	const char	*fractol;
 	t_complex	julia_c;
+	double		color_set;
 }				t_mlx;
 
 typedef struct count_x_y

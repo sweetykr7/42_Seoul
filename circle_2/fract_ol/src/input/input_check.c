@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:52:53 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/19 17:29:51 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:47:09 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ int	input_check(int ac, const char **av)
 		ft_putstr("input : [mandelbrot] / [julia] [x] [y] / [burningship]\n");
 		return (0);
 	}
-	if (ft_strcmp(av[1], "julia"))
+	if (ft_strcmp("julia", av[1]))
 		if (!julia_check(ac, av))
 			return (0);
-	if (!ft_strcmp(av[1], "mandelbrot") && !ft_strcmp(av[1], "julia") \
-									&& !ft_strcmp(av[1], "burningship"))
+	if (!ft_strcmp("mandelbrot", av[1]) && !ft_strcmp("julia", av[1]) \
+									&& !ft_strcmp("burningship", av[1]))
 	{
 		ft_putstr("input : [mandelbrot] / [julia] [x] [y] / [burningship]\n");
 		return (0);
 	}
-	if (!ft_strcmp(av[1], "julia") && ac != 2)
+	if (!ft_strcmp("julia", av[1]) && ac != 2)
 	{
 		ft_putstr("input : [mandelbrot] / [julia] [x] [y] / [burningship]\n");
 		return (0);

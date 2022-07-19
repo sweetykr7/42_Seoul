@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:55:50 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/19 18:44:51 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:06:29 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	color_set(int iter)
+int	color_set(int iter, double color_set)
 {
 	double	r;
 	double	g;
 	double	b;
 	int		color;
 
-	r = sin(0.3 * (double)iter);
-	g = sin(0.3 * (double)iter + 3) * 127 + 128;
-	b = sin(0.3 * (double)iter + 3) * 127 + 128;
+	r = sin(color_set * (double)iter);
+	g = sin(color_set * (double)iter + 3) * 127 + 128;
+	b = sin(color_set * (double)iter + 3) * 127 + 128;
 	color = ((int)(255.999 * r) << 16) + ((int)(255.999 * g) << 8) \
 										+ ((int)(255.999 * b));
 	return (color);
@@ -66,7 +66,7 @@ void	render(t_mlx *mlx)
 			iter = fractol_select(c, 0, mlx);
 			if (iter < ITER_MAX)
 			{
-				color = color_set(iter);
+				color = color_set(iter, mlx->color_set);
 				my_mlx_pixel_put(&img, c.i, c.j, color);
 			}
 			else

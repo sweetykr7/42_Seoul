@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:46:29 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/19 18:15:36 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:05:23 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_mlx	*init_mlx(const char *fractol, const char **av)
 		return (0);
 	mlx->vp = init_viewpoint(mlx->vp);
 	mlx->fractol = fractol;
+	mlx->color_set = 0.3;
 	viewpoint_setting(mlx->vp, fractol);
 	if (ft_strcmp(fractol, "julia"))
 		if (!julia_setting(mlx, av[2], av[3]))
