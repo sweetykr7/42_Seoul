@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:52:53 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/19 19:05:06 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/20 12:59:00 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # define W_WIDTH 800
 # define W_HEIGHT 600
 # define ITER_MAX 100
-# define ZOOM 1.5f
-# define MOVE 200.0f
+# define ZOOM 1.5
+# define MOVE 200.0
 
 typedef struct structure_img{
 	void		*img_ptr;
@@ -62,8 +62,6 @@ typedef struct count_x_y
 	int		i;
 	int		j;
 }	t_count;
-
-
 
 int			hook_key(int key, t_mlx *mlx);
 int			hook_mouse(int button, int x, int y, t_mlx *mlx);

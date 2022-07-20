@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 11:25:20 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/19 18:31:11 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:00:14 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	julia(t_count count, int iter, t_viewpoint *vp, t_complex c)
 
 void	julia_viewpoint(t_viewpoint *v)
 {
-	v->offy = 0.3f;
-	v->xmin = -2.0f;
-	v->xmax = 2.0f;
-	v->ymin = -1.0f;
-	v->ymax = 1.0f;
+	v->offy = 0.0;
+	v->xmin = -2.0;
+	v->xmax = 2.0;
+	v->ymin = -1.0;
+	v->ymax = 1.0;
 }

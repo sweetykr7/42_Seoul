@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:55:50 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/19 19:06:29 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:28:34 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	render(t_mlx *mlx)
 	int		color;
 	t_count	c;
 
-	img = mlx->img;
 	c.i = -1;
+	img = mlx->img;
 	while (++c.i < W_WIDTH)
 	{
 		c.j = -1;

@@ -6,7 +6,7 @@
 /*   By: sooyokim <sooyokim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 11:19:58 by sooyokim          #+#    #+#             */
-/*   Updated: 2022/07/19 16:26:18 by sooyokim         ###   ########.fr       */
+/*   Updated: 2022/07/20 12:58:27 by sooyokim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	mandelbrot(t_count count, int iter, t_viewpoint *vp)
 
 void	mandelbrot_viewpoint(t_viewpoint *vp)
 {
-	vp->offx = 0.0f;
-	vp->offy = 0.0f;
-	vp->xmax = 1.0f;
-	vp->xmin = -2.5f;
-	vp->ymax = 1.0f;
-	vp->ymin = -1.0f;
-	vp->zoom = 1.0f;
+	vp->offx = 0.0;
+	vp->offy = 0.0;
+	vp->xmax = 1.0;
+	vp->xmin = -2.5;
+	vp->ymax = 1.0;
+	vp->ymin = -1.0;
+	vp->zoom = 1.0;
 }
